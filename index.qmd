@@ -5,7 +5,7 @@ format:
   html: default
   pdf: default
 execute:
-  echo: true
+  echo: false
   eval: true
 python:
   reticulate: false
@@ -1377,7 +1377,7 @@ cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
 
 **Original Image:**
 
-![Original Florida beach image before stippling.](florida_beach_picture.jpg)
+![Original Florida beach image before stippling.](florida_beach_picture.jpg){width=60%}
 
 **Final Stippled Image:**
 
