@@ -707,7 +707,7 @@ Now let's apply the stippling algorithm to create the blue noise stippling patte
 import numpy as np
 from PIL import Image
 
-# Reload and prepare image (since chunks don't share state)
+# Note: Image is imported from PIL above, so we can use it to save the stippled image
 img_path = 'florida_beach_picture.jpg'
 original_img = Image.open(img_path)
 if original_img.mode != 'L':
@@ -844,6 +844,11 @@ stipple_pattern, samples = void_and_cluster(
 
 print(f"Generated {len(samples)} stipple points")
 print(f"Stipple pattern shape: {stipple_pattern.shape}")
+
+# Save the stippled image
+stipple_img = Image.fromarray((stipple_pattern * 255).astype(np.uint8))
+stipple_img.save('stippled_image.png')
+print("Saved stippled image to: stippled_image.png")
 ```
 
 ### R
@@ -1367,6 +1372,14 @@ cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
 ```
 
 :::
+
+## Final Stippled Image
+
+The completed blue noise stippling of your image:
+
+![Final blue noise stippling of the Florida beach image. This stippled version preserves the visual information of the original image using approximately 13,885 carefully placed dots.](stippled_image.png)
+
+## Progressive Stippling Animation
 
 ![Progressive stippling animation showing the sequential build-up of points. Each frame represents an increment of 100 points, demonstrating how the blue noise stippling pattern develops as more points are added.](progressive_stippling.gif)
 

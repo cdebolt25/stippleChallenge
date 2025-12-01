@@ -743,7 +743,7 @@ Importance map computed</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reload and prepare image (since chunks don&#39;t share state)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: Image is imported from PIL above, so we can use it to save the stippled image</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>img_path <span class="op">=</span> <span class="st">&#39;florida_beach_picture.jpg&#39;</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>original_img <span class="op">=</span> Image.<span class="bu">open</span>(img_path)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> original_img.mode <span class="op">!=</span> <span class="st">&#39;L&#39;</span>:</span>
@@ -879,11 +879,17 @@ Importance map computed</code></pre>
 <span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Generated </span><span class="sc">{</span><span class="bu">len</span>(samples)<span class="sc">}</span><span class="ss"> stipple points&quot;</span>)</span>
-<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Stipple pattern shape: </span><span class="sc">{</span>stipple_pattern<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Stipple pattern shape: </span><span class="sc">{</span>stipple_pattern<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the stippled image</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>stipple_img <span class="op">=</span> Image.fromarray((stipple_pattern <span class="op">*</span> <span class="dv">255</span>).astype(np.uint8))</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>stipple_img.save(<span class="st">&#39;stippled_image.png&#39;</span>)</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Saved stippled image to: stippled_image.png&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Generating blue noise stippling pattern...
 Generated 13885 stipple points
-Stipple pattern shape: (339, 512)</code></pre>
+Stipple pattern shape: (339, 512)
+Saved stippled image to: stippled_image.png</code></pre>
 </div>
 </div>
 </div>
@@ -1259,6 +1265,19 @@ Point counts: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200,
 </div>
 </div>
 </div>
+</section>
+<section id="final-stippled-image" class="level2">
+<h2>Final Stippled Image</h2>
+<p>The completed blue noise stippling of your image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="stippled_image.png" class="img-fluid" /></p>
+<figcaption>Final blue noise stippling of the Florida beach image. This stippled version preserves the visual information of the original image using approximately 13,885 carefully placed dots.</figcaption>
+</figure>
+</div>
+</section>
+<section id="progressive-stippling-animation-1" class="level2">
+<h2>Progressive Stippling Animation</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img src="progressive_stippling.gif" class="img-fluid" /></p>
