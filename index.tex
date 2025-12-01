@@ -1,0 +1,1705 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Selection Bias \& Missing Data Challenge - Part 1},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Selection Bias \& Missing Data Challenge - Part 1}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Blue Noise Stippling: Creating Art from Data}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+
+\section{🎨 Selection Bias \& Missing Data Challenge - Part
+1}\label{selection-bias-missing-data-challenge---part-1}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, bottomrule=.15mm, colback=white, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, leftrule=.75mm, opacityback=0, rightrule=.15mm, toptitle=1mm, coltitle=black, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{📊 Challenge Requirements}, breakable, left=2mm]
+
+\textbf{Your Task:} Reproduce the blue noise stippling process
+demonstrated below to create: 1. A stippled version of your chosen image
+2. A progressive stippling GIF animation 3. Post both to a GitHub Pages
+site with appropriate captions and a brief explanation
+
+\textbf{Part 2 Preview:} On November 18th, we'll tackle Part 2 of this
+challenge, where you'll create a statistical meme about selection bias
+and missing data using your stippled images.
+
+\end{tcolorbox}
+
+\subsection{The Problem: Can Algorithms Create
+Art?}\label{the-problem-can-algorithms-create-art}
+
+\textbf{Core Question:} How can we convert a photograph into an
+aesthetically pleasing pattern of dots that preserves the visual
+information of the original image?
+
+\textbf{The Challenge:} Blue noise stippling is a technique that
+converts images into patterns of dots (stipples) using algorithms that
+balance visual accuracy with spatial distribution. This challenge asks
+you to implement a modified ``void and cluster'' algorithm that combines
+importance sampling with blue noise distribution properties to create
+stippling patterns that are both visually accurate and spatially
+well-distributed.
+
+\textbf{Our Approach:} We'll use a modified void-and-cluster algorithm
+that: 1. Creates an importance map identifying visually important
+regions 2. Uses a toroidal (periodic) Gaussian kernel for repulsion to
+ensure blue noise properties 3. Iteratively selects points with minimum
+energy 4. Balances image content importance with blue noise spatial
+distribution
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, bottomrule=.15mm, colback=white, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, leftrule=.75mm, opacityback=0, rightrule=.15mm, toptitle=1mm, coltitle=black, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{⚠️ AI Partnership Required}, breakable, left=2mm]
+
+This challenge pushes boundaries intentionally. You'll tackle problems
+that normally require weeks of study, but with Cursor AI as your partner
+(and your brain keeping it honest), you can accomplish more than you
+thought possible.
+
+\textbf{The new reality:} The four stages of competence are Ignorance →
+Awareness → Learning → Mastery. AI lets us produce Mastery-level work
+while operating primarily in the Awareness stage. I focus on awareness
+training, you leverage AI for execution, and together we create outputs
+that used to require years of dedicated study.
+
+\end{tcolorbox}
+
+\subsection{Introduction to Blue Noise
+Stippling}\label{introduction-to-blue-noise-stippling}
+
+Blue noise stippling is a technique for converting images into a pattern
+of dots (stipples) that preserves the visual information of the original
+image while creating an aesthetically pleasing, evenly distributed
+pattern. This method follows the approach described by
+\href{https://bartwronski.com/2022/08/31/progressive-image-stippling-and-greedy-blue-noise-importance-sampling/}{Bart
+Wronski}.
+
+The method uses a modified ``void and cluster'' algorithm that combines
+importance sampling with blue noise distribution properties to create
+stippling patterns that are both visually accurate and spatially
+well-distributed. This version uses \textbf{smooth extreme
+downweighting} that selectively downweights very dark and very light
+tones while preserving mid-tones, creating a more balanced distribution
+of stipples across the image.
+
+\subsection{Loading the Original
+Image}\label{loading-the-original-image}
+
+First, let's load an image that we'll convert to a blue noise stippling
+pattern. You can use any image you'd like, but we'll demonstrate with
+the provided example.
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+\ImportTok{import}\NormalTok{ matplotlib}
+\NormalTok{matplotlib.use(}\StringTok{\textquotesingle{}Agg\textquotesingle{}}\NormalTok{)  }\CommentTok{\# Use non{-}interactive backend}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Load the image}
+\NormalTok{img\_path }\OperatorTok{=} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OperatorTok{=}\NormalTok{ Image.}\BuiltInTok{open}\NormalTok{(img\_path)}
+
+\CommentTok{\# Convert to grayscale if needed}
+\ControlFlowTok{if}\NormalTok{ original\_img.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{    original\_img }\OperatorTok{=}\NormalTok{ original\_img.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Convert to numpy array and normalize to [0, 1]}
+\NormalTok{img\_array }\OperatorTok{=}\NormalTok{ np.array(original\_img, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+
+\CommentTok{\# Display the original image}
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\FloatTok{6.5}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{ax.imshow(img\_array, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, vmin}\OperatorTok{=}\DecValTok{0}\NormalTok{, vmax}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{ax.axis(}\StringTok{\textquotesingle{}off\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.set\_title(}\StringTok{\textquotesingle{}Original Image\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{, pad}\OperatorTok{=}\DecValTok{10}\NormalTok{)}
+\NormalTok{plt.tight\_layout()}
+\CommentTok{\# plt.show() removed {-} Quarto will handle figure display}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Image shape: }\SpecialCharTok{\{}\NormalTok{img\_array}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Image size: }\SpecialCharTok{\{}\NormalTok{img\_array}\SpecialCharTok{.}\NormalTok{shape[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{x}\SpecialCharTok{\{}\NormalTok{img\_array}\SpecialCharTok{.}\NormalTok{shape[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{ pixels"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Image shape: (1060, 1600)
+Image size: 1060x1600 pixels
+\end{verbatim}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(imager)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Load the image}
+\NormalTok{img\_path }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OtherTok{\textless{}{-}} \FunctionTok{load.image}\NormalTok{(img\_path)}
+
+\CommentTok{\# Convert to grayscale if needed}
+\ControlFlowTok{if}\NormalTok{(}\FunctionTok{dim}\NormalTok{(original\_img)[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{==} \DecValTok{3}\NormalTok{) \{}
+\NormalTok{  original\_img }\OtherTok{\textless{}{-}} \FunctionTok{grayscale}\NormalTok{(original\_img)}
+\NormalTok{\}}
+
+\CommentTok{\# Display the original image}
+\FunctionTok{plot}\NormalTok{(original\_img, }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{main =} \StringTok{"Original Image"}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Image dimensions:"}\NormalTok{, }\FunctionTok{dim}\NormalTok{(original\_img)[}\DecValTok{1}\NormalTok{], }\StringTok{"x"}\NormalTok{, }\FunctionTok{dim}\NormalTok{(original\_img)[}\DecValTok{2}\NormalTok{], }\StringTok{"pixels}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Importance Mapping}\label{importance-mapping}
+
+Before applying the stippling algorithm, we create an \textbf{importance
+map} that identifies which regions of the image should receive more
+stipples. The importance map is computed by:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Brightness inversion}: The image brightness is inverted so
+  that dark areas receive higher importance and thus more dots, while
+  light areas receive fewer dots
+\item
+  \textbf{Extreme tone downweighting}: Smooth Gaussian functions
+  downweight tones below 0.2 (very dark) and above 0.8 (very light),
+  creating a gradual transition that preserves mid-tones
+\item
+  \textbf{Mid-tone boost}: A smooth Gaussian function centered on
+  mid-tones provides a gradual increase in importance for mid-tone
+  regions, ensuring they receive appropriate stippling density
+\item
+  \textbf{Selective and effective}: This approach ensures that stipples
+  are distributed appropriately (more dots in dark areas and mid-tones,
+  fewer in extreme dark/light areas) while maintaining good spatial
+  distribution
+\end{itemize}
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\KeywordTok{def}\NormalTok{ compute\_importance(}
+\NormalTok{    gray\_img: np.ndarray,}
+\NormalTok{    extreme\_downweight: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.5}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_low: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_high: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.8}\NormalTok{,}
+\NormalTok{    extreme\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.1}\NormalTok{,}
+\NormalTok{    mid\_tone\_boost: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{    mid\_tone\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.2}\NormalTok{,}
+\NormalTok{):}
+    \CommentTok{"""}
+\CommentTok{    Importance map computation that downweights extreme tones (very dark and very light)}
+\CommentTok{    using smooth functions, while boosting mid{-}tones.}
+\CommentTok{    }
+\CommentTok{    Parameters}
+\CommentTok{    {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{    gray\_img : np.ndarray}
+\CommentTok{        Grayscale image in [0, 1]}
+\CommentTok{    extreme\_downweight : float}
+\CommentTok{        Strength of downweighting for extreme tones (0.0 = no downweighting, 1.0 = maximum downweighting)}
+\CommentTok{    extreme\_threshold\_low : float}
+\CommentTok{        Threshold below which tones are considered "very dark" and get downweighted}
+\CommentTok{    extreme\_threshold\_high : float}
+\CommentTok{        Threshold above which tones are considered "very light" and get downweighted}
+\CommentTok{    extreme\_sigma : float}
+\CommentTok{        Width of the smooth transition for extreme downweighting (smaller = sharper transition)}
+\CommentTok{    mid\_tone\_boost : float}
+\CommentTok{        Strength of mid{-}tone emphasis (0.0 = no boost, 1.0 = strong boost)}
+\CommentTok{    mid\_tone\_sigma : float}
+\CommentTok{        Width of the mid{-}tone Gaussian bump (smaller = narrower, larger = wider)}
+\CommentTok{    }
+\CommentTok{    Returns}
+\CommentTok{    {-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{    importance : np.ndarray}
+\CommentTok{        Importance map in [0, 1]; higher = more stipples (dark areas and mid{-}tones get higher importance)}
+\CommentTok{    """}
+\NormalTok{    I }\OperatorTok{=}\NormalTok{ np.clip(gray\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+    
+    \CommentTok{\# Invert brightness: dark areas should get more dots (higher importance)}
+\NormalTok{    I\_inverted }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ I}
+    
+    \CommentTok{\# Create smooth downweighting mask for extreme tones}
+    \CommentTok{\# Downweight very dark regions (I \textless{} extreme\_threshold\_low)}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{0.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textless{}}\NormalTok{ extreme\_threshold\_low, dark\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ dark\_mask }\OperatorTok{/}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{()}
+    
+    \CommentTok{\# Downweight very light regions (I \textgreater{} extreme\_threshold\_high)}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textgreater{}}\NormalTok{ extreme\_threshold\_high, light\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ light\_mask }\OperatorTok{/}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{()}
+    
+    \CommentTok{\# Combine both masks}
+\NormalTok{    extreme\_mask }\OperatorTok{=}\NormalTok{ np.maximum(dark\_mask, light\_mask)}
+    
+    \CommentTok{\# Apply smooth downweighting}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ I\_inverted }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ extreme\_downweight }\OperatorTok{*}\NormalTok{ extreme\_mask)}
+    
+    \CommentTok{\# Add smooth gradual mid{-}tone boost (Gaussian centered on 0.65)}
+\NormalTok{    mid\_tone\_center }\OperatorTok{=} \FloatTok{0.65}
+\NormalTok{    mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}}\NormalTok{ mid\_tone\_center) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (mid\_tone\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+    \ControlFlowTok{if}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ mid\_tone\_gaussian }\OperatorTok{/}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{()}
+    
+    \CommentTok{\# Boost importance in mid{-}tone regions}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ importance }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{+}\NormalTok{ mid\_tone\_boost }\OperatorTok{*}\NormalTok{ mid\_tone\_gaussian)}
+    
+    \CommentTok{\# Normalize to [0,1]}
+\NormalTok{    m, M }\OperatorTok{=}\NormalTok{ importance.}\BuiltInTok{min}\NormalTok{(), importance.}\BuiltInTok{max}\NormalTok{()}
+    \ControlFlowTok{if}\NormalTok{ M }\OperatorTok{\textgreater{}}\NormalTok{ m: }
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ (importance }\OperatorTok{{-}}\NormalTok{ m) }\OperatorTok{/}\NormalTok{ (M }\OperatorTok{{-}}\NormalTok{ m)}
+    \ControlFlowTok{return}\NormalTok{ importance}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{compute\_importance }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(gray\_img, }
+                                \AttributeTok{extreme\_downweight =} \FloatTok{0.5}\NormalTok{,}
+                                \AttributeTok{extreme\_threshold\_low =} \FloatTok{0.4}\NormalTok{,}
+                                \AttributeTok{extreme\_threshold\_high =} \FloatTok{0.8}\NormalTok{,}
+                                \AttributeTok{extreme\_sigma =} \FloatTok{0.1}\NormalTok{,}
+                                \AttributeTok{mid\_tone\_boost =} \FloatTok{0.4}\NormalTok{,}
+                                \AttributeTok{mid\_tone\_sigma =} \FloatTok{0.2}\NormalTok{) \{}
+  \CommentTok{\# Clip image to [0, 1]}
+\NormalTok{  I }\OtherTok{\textless{}{-}} \FunctionTok{pmax}\NormalTok{(}\FunctionTok{pmin}\NormalTok{(gray\_img, }\FloatTok{1.0}\NormalTok{), }\FloatTok{0.0}\NormalTok{)}
+  
+  \CommentTok{\# Invert brightness}
+\NormalTok{  I\_inverted }\OtherTok{\textless{}{-}} \FloatTok{1.0} \SpecialCharTok{{-}}\NormalTok{ I}
+  
+  \CommentTok{\# Dark mask}
+\NormalTok{  dark\_mask }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{((I }\SpecialCharTok{{-}} \FloatTok{0.0}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (}\FloatTok{2.0} \SpecialCharTok{*}\NormalTok{ (extreme\_sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  dark\_mask[I }\SpecialCharTok{\textgreater{}=}\NormalTok{ extreme\_threshold\_low] }\OtherTok{\textless{}{-}} \FloatTok{0.0}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{max}\NormalTok{(dark\_mask) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{    dark\_mask }\OtherTok{\textless{}{-}}\NormalTok{ dark\_mask }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(dark\_mask)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Light mask}
+\NormalTok{  light\_mask }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{((I }\SpecialCharTok{{-}} \FloatTok{1.0}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (}\FloatTok{2.0} \SpecialCharTok{*}\NormalTok{ (extreme\_sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  light\_mask[I }\SpecialCharTok{\textless{}=}\NormalTok{ extreme\_threshold\_high] }\OtherTok{\textless{}{-}} \FloatTok{0.0}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{max}\NormalTok{(light\_mask) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{    light\_mask }\OtherTok{\textless{}{-}}\NormalTok{ light\_mask }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(light\_mask)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Combine masks}
+\NormalTok{  extreme\_mask }\OtherTok{\textless{}{-}} \FunctionTok{pmax}\NormalTok{(dark\_mask, light\_mask)}
+  
+  \CommentTok{\# Apply downweighting}
+\NormalTok{  importance }\OtherTok{\textless{}{-}}\NormalTok{ I\_inverted }\SpecialCharTok{*}\NormalTok{ (}\FloatTok{1.0} \SpecialCharTok{{-}}\NormalTok{ extreme\_downweight }\SpecialCharTok{*}\NormalTok{ extreme\_mask)}
+  
+  \CommentTok{\# Mid{-}tone boost}
+\NormalTok{  mid\_tone\_center }\OtherTok{\textless{}{-}} \FloatTok{0.65}
+\NormalTok{  mid\_tone\_gaussian }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{((I }\SpecialCharTok{{-}}\NormalTok{ mid\_tone\_center)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (}\FloatTok{2.0} \SpecialCharTok{*}\NormalTok{ (mid\_tone\_sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{max}\NormalTok{(mid\_tone\_gaussian) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{    mid\_tone\_gaussian }\OtherTok{\textless{}{-}}\NormalTok{ mid\_tone\_gaussian }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(mid\_tone\_gaussian)}
+\NormalTok{  \}}
+  
+\NormalTok{  importance }\OtherTok{\textless{}{-}}\NormalTok{ importance }\SpecialCharTok{*}\NormalTok{ (}\FloatTok{1.0} \SpecialCharTok{+}\NormalTok{ mid\_tone\_boost }\SpecialCharTok{*}\NormalTok{ mid\_tone\_gaussian)}
+  
+  \CommentTok{\# Normalize}
+\NormalTok{  m }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(importance)}
+\NormalTok{  M }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(importance)}
+  \ControlFlowTok{if}\NormalTok{(M }\SpecialCharTok{\textgreater{}}\NormalTok{ m) \{}
+\NormalTok{    importance }\OtherTok{\textless{}{-}}\NormalTok{ (importance }\SpecialCharTok{{-}}\NormalTok{ m) }\SpecialCharTok{/}\NormalTok{ (M }\SpecialCharTok{{-}}\NormalTok{ m)}
+\NormalTok{  \}}
+  
+  \FunctionTok{return}\NormalTok{(importance)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Blue Noise Stippling
+Algorithm}\label{blue-noise-stippling-algorithm}
+
+The stippling algorithm uses a modified void-and-cluster approach that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Creates an importance map that identifies visually important regions
+\item
+  Initializes an energy field based on the importance map (higher
+  importance → lower energy)
+\item
+  Uses a toroidal (periodic) Gaussian kernel for repulsion to ensure
+  blue noise properties
+\item
+  Iteratively selects points with minimum energy
+\item
+  Adds Gaussian ``splats'' around selected points to prevent clustering
+\item
+  Balances image content importance with blue noise spatial distribution
+\end{enumerate}
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\CommentTok{\# compute\_importance function is defined in the importance{-}map chunk}
+\CommentTok{\# void\_and\_cluster will use it from there}
+
+\KeywordTok{def}\NormalTok{ toroidal\_gaussian\_kernel(h: }\BuiltInTok{int}\NormalTok{, w: }\BuiltInTok{int}\NormalTok{, sigma: }\BuiltInTok{float}\NormalTok{):}
+    \CommentTok{"""}
+\CommentTok{    Create a periodic (toroidal) 2D Gaussian kernel centered at (0,0).}
+\CommentTok{    The toroidal property means the kernel wraps around at the edges,}
+\CommentTok{    ensuring consistent repulsion behavior regardless of point location.}
+\CommentTok{    """}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ np.arange(h)}
+\NormalTok{    x }\OperatorTok{=}\NormalTok{ np.arange(w)}
+    \CommentTok{\# Compute toroidal distances (minimum distance considering wrapping)}
+\NormalTok{    dy }\OperatorTok{=}\NormalTok{ np.minimum(y, h }\OperatorTok{{-}}\NormalTok{ y)[:, }\VariableTok{None}\NormalTok{]}
+\NormalTok{    dx }\OperatorTok{=}\NormalTok{ np.minimum(x, w }\OperatorTok{{-}}\NormalTok{ x)[}\VariableTok{None}\NormalTok{, :]}
+    \CommentTok{\# Compute Gaussian}
+\NormalTok{    kern }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{(dx}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ dy}\OperatorTok{**}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ sigma}\OperatorTok{**}\DecValTok{2}\NormalTok{))}
+\NormalTok{    s }\OperatorTok{=}\NormalTok{ kern.}\BuiltInTok{sum}\NormalTok{()}
+    \ControlFlowTok{if}\NormalTok{ s }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        kern }\OperatorTok{/=}\NormalTok{ s  }\CommentTok{\# Normalize}
+    \ControlFlowTok{return}\NormalTok{ kern}
+
+
+\KeywordTok{def}\NormalTok{ void\_and\_cluster(}
+\NormalTok{    input\_img: np.ndarray,}
+\NormalTok{    percentage: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.08}\NormalTok{,}
+\NormalTok{    sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.9}\NormalTok{,}
+\NormalTok{    content\_bias: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.9}\NormalTok{,}
+\NormalTok{    importance\_img: np.ndarray }\OperatorTok{|} \VariableTok{None} \OperatorTok{=} \VariableTok{None}\NormalTok{,}
+\NormalTok{    noise\_scale\_factor: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.1}\NormalTok{,}
+\NormalTok{):}
+    \CommentTok{"""}
+\CommentTok{    Generate blue noise stippling pattern from input image using a modified}
+\CommentTok{    void{-}and{-}cluster algorithm with content{-}weighted importance.}
+\CommentTok{    """}
+\NormalTok{    I }\OperatorTok{=}\NormalTok{ np.clip(input\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{    h, w }\OperatorTok{=}\NormalTok{ I.shape}
+
+    \CommentTok{\# Compute or use provided importance map}
+    \ControlFlowTok{if}\NormalTok{ importance\_img }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ compute\_importance(I)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ np.clip(importance\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+
+    \CommentTok{\# Create toroidal Gaussian kernel for repulsion}
+\NormalTok{    kernel }\OperatorTok{=}\NormalTok{ toroidal\_gaussian\_kernel(h, w, sigma)}
+
+    \CommentTok{\# Initialize energy field: lower energy → more likely to be picked}
+\NormalTok{    energy\_current }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{importance }\OperatorTok{*}\NormalTok{ content\_bias}
+
+    \CommentTok{\# Stipple buffer: start with white background; selected points become black dots}
+\NormalTok{    final\_stipple }\OperatorTok{=}\NormalTok{ np.ones\_like(I)}
+\NormalTok{    samples }\OperatorTok{=}\NormalTok{ []}
+
+    \CommentTok{\# Helper function to roll kernel to an arbitrary position}
+    \KeywordTok{def}\NormalTok{ energy\_splat(y, x):}
+        \CommentTok{"""Get energy contribution by rolling the kernel to position (y, x)."""}
+        \ControlFlowTok{return}\NormalTok{ np.roll(np.roll(kernel, shift}\OperatorTok{=}\NormalTok{y, axis}\OperatorTok{=}\DecValTok{0}\NormalTok{), shift}\OperatorTok{=}\NormalTok{x, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+
+    \CommentTok{\# Number of points to select}
+\NormalTok{    num\_points }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(I.size }\OperatorTok{*}\NormalTok{ percentage)}
+
+    \CommentTok{\# Choose first point near center with minimal energy}
+\NormalTok{    cy, cx }\OperatorTok{=}\NormalTok{ h }\OperatorTok{//} \DecValTok{2}\NormalTok{, w }\OperatorTok{//} \DecValTok{2}
+\NormalTok{    r }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(}\DecValTok{20}\NormalTok{, h }\OperatorTok{//} \DecValTok{10}\NormalTok{, w }\OperatorTok{//} \DecValTok{10}\NormalTok{)}
+\NormalTok{    ys }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cy }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(h, cy }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{    xs }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cx }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(w, cx }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{    region }\OperatorTok{=}\NormalTok{ energy\_current[ys, xs]}
+\NormalTok{    flat }\OperatorTok{=}\NormalTok{ np.argmin(region)}
+\NormalTok{    y0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{//}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cy }\OperatorTok{{-}}\NormalTok{ r)}
+\NormalTok{    x0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{\%}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cx }\OperatorTok{{-}}\NormalTok{ r)}
+
+    \CommentTok{\# Place first point}
+\NormalTok{    energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y0, x0)}
+\NormalTok{    energy\_current[y0, x0] }\OperatorTok{=}\NormalTok{ np.inf  }\CommentTok{\# Prevent reselection}
+\NormalTok{    samples.append((y0, x0, I[y0, x0]))}
+\NormalTok{    final\_stipple[y0, x0] }\OperatorTok{=} \FloatTok{0.0}  \CommentTok{\# Black dot}
+
+    \CommentTok{\# Iteratively place remaining points}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, num\_points):}
+        \CommentTok{\# Add exploration noise that decreases over time}
+\NormalTok{        exploration }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ (i }\OperatorTok{/}\NormalTok{ num\_points) }\OperatorTok{*} \FloatTok{0.5}  \CommentTok{\# Decrease from 1.0 to 0.5}
+\NormalTok{        noise }\OperatorTok{=}\NormalTok{ np.random.normal(}\FloatTok{0.0}\NormalTok{, noise\_scale\_factor }\OperatorTok{*}\NormalTok{ content\_bias }\OperatorTok{*}\NormalTok{ exploration, size}\OperatorTok{=}\NormalTok{energy\_current.shape)}
+\NormalTok{        energy\_with\_noise }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ noise}
+
+        \CommentTok{\# Find position with minimum energy (with noise for exploration)}
+\NormalTok{        pos\_flat }\OperatorTok{=}\NormalTok{ np.argmin(energy\_with\_noise)}
+\NormalTok{        y }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{//}\NormalTok{ w}
+\NormalTok{        x }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{\%}\NormalTok{ w}
+
+        \CommentTok{\# Add Gaussian splat to prevent nearby points from being selected}
+\NormalTok{        energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y, x)}
+\NormalTok{        energy\_current[y, x] }\OperatorTok{=}\NormalTok{ np.inf  }\CommentTok{\# Prevent reselection}
+
+        \CommentTok{\# Record the sample}
+\NormalTok{        samples.append((y, x, I[y, x]))}
+\NormalTok{        final\_stipple[y, x] }\OperatorTok{=} \FloatTok{0.0}  \CommentTok{\# Black dot}
+
+    \ControlFlowTok{return}\NormalTok{ final\_stipple, np.array(samples)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Note: R implementation provided for completeness, but Python is strongly recommended}
+\CommentTok{\# The R implementation may have issues with the circular shift that need debugging}
+\CommentTok{\# If you encounter problems (e.g., tiling/repeating patterns), please use the Python version}
+
+\NormalTok{toroidal\_gaussian\_kernel }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(h, w, sigma) \{}
+\NormalTok{  y }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\NormalTok{(h}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{  x }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\NormalTok{(w}\DecValTok{{-}1}\NormalTok{)}
+  
+  \CommentTok{\# Compute toroidal distances}
+\NormalTok{  dy }\OtherTok{\textless{}{-}} \FunctionTok{pmin}\NormalTok{(y, h }\SpecialCharTok{{-}}\NormalTok{ y)}
+\NormalTok{  dx }\OtherTok{\textless{}{-}} \FunctionTok{pmin}\NormalTok{(x, w }\SpecialCharTok{{-}}\NormalTok{ x)}
+  
+  \CommentTok{\# Create distance matrices}
+\NormalTok{  dy\_mat }\OtherTok{\textless{}{-}} \FunctionTok{outer}\NormalTok{(dy, }\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, w))}
+\NormalTok{  dx\_mat }\OtherTok{\textless{}{-}} \FunctionTok{outer}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, h), dx)}
+  
+  \CommentTok{\# Compute Gaussian}
+\NormalTok{  kern }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{(dx\_mat}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ dy\_mat}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (}\FloatTok{2.0} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{  kern }\OtherTok{\textless{}{-}}\NormalTok{ kern }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(kern)  }\CommentTok{\# Normalize}
+  
+  \FunctionTok{return}\NormalTok{(kern)}
+\NormalTok{\}}
+
+\NormalTok{void\_and\_cluster }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input\_img, }
+                             \AttributeTok{percentage =} \FloatTok{0.08}\NormalTok{,}
+                             \AttributeTok{sigma =} \FloatTok{0.9}\NormalTok{,}
+                             \AttributeTok{content\_bias =} \FloatTok{0.9}\NormalTok{,}
+                             \AttributeTok{importance\_img =} \ConstantTok{NULL}\NormalTok{,}
+                             \AttributeTok{noise\_scale\_factor =} \FloatTok{0.1}\NormalTok{) \{}
+  \CommentTok{\# Clip image to [0, 1]}
+\NormalTok{  I }\OtherTok{\textless{}{-}} \FunctionTok{pmax}\NormalTok{(}\FunctionTok{pmin}\NormalTok{(input\_img, }\FloatTok{1.0}\NormalTok{), }\FloatTok{0.0}\NormalTok{)}
+\NormalTok{  h }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(I)}
+\NormalTok{  w }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(I)}
+  
+  \CommentTok{\# Compute or use provided importance map}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.null}\NormalTok{(importance\_img)) \{}
+\NormalTok{    importance }\OtherTok{\textless{}{-}} \FunctionTok{compute\_importance}\NormalTok{(I)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    importance }\OtherTok{\textless{}{-}} \FunctionTok{pmax}\NormalTok{(}\FunctionTok{pmin}\NormalTok{(importance\_img, }\FloatTok{1.0}\NormalTok{), }\FloatTok{0.0}\NormalTok{)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Create toroidal Gaussian kernel for repulsion}
+\NormalTok{  kernel }\OtherTok{\textless{}{-}} \FunctionTok{toroidal\_gaussian\_kernel}\NormalTok{(h, w, sigma)}
+  
+  \CommentTok{\# Initialize energy field: lower energy → more likely to be picked}
+\NormalTok{  energy\_current }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{importance }\SpecialCharTok{*}\NormalTok{ content\_bias}
+  
+  \CommentTok{\# Stipple buffer: start with white background; selected points become black dots}
+\NormalTok{  final\_stipple }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ h, }\AttributeTok{ncol =}\NormalTok{ w)}
+\NormalTok{  samples }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+  
+  \CommentTok{\# Helper function to roll kernel to an arbitrary position}
+  \CommentTok{\# This implements the equivalent of Python\textquotesingle{}s np.roll(kernel, shift=y, axis=0) }
+  \CommentTok{\# followed by np.roll(kernel, shift=x, axis=1)}
+  \CommentTok{\# Instead of rolling, we compute the toroidal distance directly for each position}
+\NormalTok{  energy\_splat }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y, x) \{}
+    \CommentTok{\# Create a matrix of the same size as kernel}
+    \CommentTok{\# For each position (i, j), compute the toroidal distance from (y, x)}
+    \CommentTok{\# and use the kernel value at that distance}
+    
+    \CommentTok{\# Create coordinate grids (1{-}indexed in R)}
+\NormalTok{    i\_grid }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{h, }\AttributeTok{each =}\NormalTok{ w), }\AttributeTok{nrow =}\NormalTok{ h, }\AttributeTok{ncol =}\NormalTok{ w)}
+\NormalTok{    j\_grid }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{w, }\AttributeTok{times =}\NormalTok{ h), }\AttributeTok{nrow =}\NormalTok{ h, }\AttributeTok{ncol =}\NormalTok{ w)}
+    
+    \CommentTok{\# Convert to 0{-}indexed for distance calculation}
+\NormalTok{    i\_0 }\OtherTok{\textless{}{-}}\NormalTok{ i\_grid }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{    j\_0 }\OtherTok{\textless{}{-}}\NormalTok{ j\_grid }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{    y\_0 }\OtherTok{\textless{}{-}}\NormalTok{ y }\SpecialCharTok{{-}} \DecValTok{1}  \CommentTok{\# Convert y to 0{-}indexed}
+\NormalTok{    x\_0 }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}  \CommentTok{\# Convert x to 0{-}indexed}
+    
+    \CommentTok{\# Compute toroidal distances}
+\NormalTok{    dy }\OtherTok{\textless{}{-}} \FunctionTok{pmin}\NormalTok{(}\FunctionTok{abs}\NormalTok{(i\_0 }\SpecialCharTok{{-}}\NormalTok{ y\_0), h }\SpecialCharTok{{-}} \FunctionTok{abs}\NormalTok{(i\_0 }\SpecialCharTok{{-}}\NormalTok{ y\_0))}
+\NormalTok{    dx }\OtherTok{\textless{}{-}} \FunctionTok{pmin}\NormalTok{(}\FunctionTok{abs}\NormalTok{(j\_0 }\SpecialCharTok{{-}}\NormalTok{ x\_0), w }\SpecialCharTok{{-}} \FunctionTok{abs}\NormalTok{(j\_0 }\SpecialCharTok{{-}}\NormalTok{ x\_0))}
+    
+    \CommentTok{\# The kernel is centered at (0,0) in 0{-}indexed coordinates}
+    \CommentTok{\# So we need to find which kernel position corresponds to distance (dy, dx)}
+    \CommentTok{\# The kernel position is (dy, dx) in 0{-}indexed}
+    \CommentTok{\# Convert back to 1{-}indexed for R indexing}
+\NormalTok{    kern\_i }\OtherTok{\textless{}{-}}\NormalTok{ dy }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    kern\_j }\OtherTok{\textless{}{-}}\NormalTok{ dx }\SpecialCharTok{+} \DecValTok{1}
+    
+    \CommentTok{\# Extract kernel values at these positions}
+    \CommentTok{\# Use matrix indexing: kernel[kern\_i, kern\_j] but need to handle vectorized indexing}
+\NormalTok{    kern\_rolled }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(kernel[}\FunctionTok{cbind}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(kern\_i), }\FunctionTok{as.vector}\NormalTok{(kern\_j))], }
+                         \AttributeTok{nrow =}\NormalTok{ h, }\AttributeTok{ncol =}\NormalTok{ w)}
+    
+    \FunctionTok{return}\NormalTok{(kern\_rolled)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Number of points to select}
+\NormalTok{  num\_points }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(}\FunctionTok{length}\NormalTok{(I) }\SpecialCharTok{*}\NormalTok{ percentage)}
+  
+  \CommentTok{\# Choose first point near center with minimal energy}
+\NormalTok{  cy }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(h }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)}
+\NormalTok{  cx }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(w }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)}
+\NormalTok{  r }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(}\DecValTok{20}\NormalTok{, }\FunctionTok{as.integer}\NormalTok{(h }\SpecialCharTok{/} \DecValTok{10}\NormalTok{), }\FunctionTok{as.integer}\NormalTok{(w }\SpecialCharTok{/} \DecValTok{10}\NormalTok{))}
+\NormalTok{  y\_start }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\DecValTok{1}\NormalTok{, cy }\SpecialCharTok{{-}}\NormalTok{ r)}
+\NormalTok{  y\_end }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(h, cy }\SpecialCharTok{+}\NormalTok{ r)}
+\NormalTok{  x\_start }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\DecValTok{1}\NormalTok{, cx }\SpecialCharTok{{-}}\NormalTok{ r)}
+\NormalTok{  x\_end }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(w, cx }\SpecialCharTok{+}\NormalTok{ r)}
+  
+\NormalTok{  region }\OtherTok{\textless{}{-}}\NormalTok{ energy\_current[y\_start}\SpecialCharTok{:}\NormalTok{y\_end, x\_start}\SpecialCharTok{:}\NormalTok{x\_end]}
+\NormalTok{  flat\_idx }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(region)}
+\NormalTok{  y0 }\OtherTok{\textless{}{-}}\NormalTok{ ((flat\_idx }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%/\%} \FunctionTok{ncol}\NormalTok{(region)) }\SpecialCharTok{+}\NormalTok{ y\_start}
+\NormalTok{  x0 }\OtherTok{\textless{}{-}}\NormalTok{ ((flat\_idx }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\%} \FunctionTok{ncol}\NormalTok{(region)) }\SpecialCharTok{+}\NormalTok{ x\_start}
+  
+  \CommentTok{\# Place first point}
+\NormalTok{  energy\_current }\OtherTok{\textless{}{-}}\NormalTok{ energy\_current }\SpecialCharTok{+} \FunctionTok{energy\_splat}\NormalTok{(y0, x0)}
+\NormalTok{  energy\_current[y0, x0] }\OtherTok{\textless{}{-}} \ConstantTok{Inf}  \CommentTok{\# Prevent reselection}
+\NormalTok{  samples[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(y0, x0, I[y0, x0])}
+\NormalTok{  final\_stipple[y0, x0] }\OtherTok{\textless{}{-}} \FloatTok{0.0}  \CommentTok{\# Black dot}
+  
+  \CommentTok{\# Iteratively place remaining points}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{num\_points) \{}
+    \CommentTok{\# Add exploration noise that decreases over time}
+\NormalTok{    exploration }\OtherTok{\textless{}{-}} \FloatTok{1.0} \SpecialCharTok{{-}}\NormalTok{ ((i }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ num\_points) }\SpecialCharTok{*} \FloatTok{0.5}  \CommentTok{\# Decrease from 1.0 to 0.5}
+\NormalTok{    noise }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(h }\SpecialCharTok{*}\NormalTok{ w, }\DecValTok{0}\NormalTok{, noise\_scale\_factor }\SpecialCharTok{*}\NormalTok{ content\_bias }\SpecialCharTok{*}\NormalTok{ exploration), }
+                    \AttributeTok{nrow =}\NormalTok{ h, }\AttributeTok{ncol =}\NormalTok{ w)}
+\NormalTok{    energy\_with\_noise }\OtherTok{\textless{}{-}}\NormalTok{ energy\_current }\SpecialCharTok{+}\NormalTok{ noise}
+    
+    \CommentTok{\# Find position with minimum energy (with noise for exploration)}
+\NormalTok{    pos\_flat }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(energy\_with\_noise)}
+\NormalTok{    y }\OtherTok{\textless{}{-}}\NormalTok{ ((pos\_flat }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%/\%}\NormalTok{ w) }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ ((pos\_flat }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\%}\NormalTok{ w) }\SpecialCharTok{+} \DecValTok{1}
+    
+    \CommentTok{\# Add Gaussian splat to prevent nearby points from being selected}
+\NormalTok{    energy\_current }\OtherTok{\textless{}{-}}\NormalTok{ energy\_current }\SpecialCharTok{+} \FunctionTok{energy\_splat}\NormalTok{(y, x)}
+\NormalTok{    energy\_current[y, x] }\OtherTok{\textless{}{-}} \ConstantTok{Inf}  \CommentTok{\# Prevent reselection}
+    
+    \CommentTok{\# Record the sample}
+\NormalTok{    samples[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(y, x, I[y, x])}
+\NormalTok{    final\_stipple[y, x] }\OtherTok{\textless{}{-}} \FloatTok{0.0}  \CommentTok{\# Black dot}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Convert samples list to matrix}
+\NormalTok{  samples\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(rbind, samples)}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{stipple =}\NormalTok{ final\_stipple, }\AttributeTok{samples =}\NormalTok{ samples\_matrix))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Preparing the Working
+Image}\label{preparing-the-working-image}
+
+Before generating the stippling pattern, we prepare the image by
+resizing if necessary and computing the importance map.
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+
+\CommentTok{\# Load image (always reload to ensure chunk is self{-}contained)}
+\CommentTok{\# This works whether or not variables from previous chunk are available}
+\NormalTok{img\_path }\OperatorTok{=} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OperatorTok{=}\NormalTok{ Image.}\BuiltInTok{open}\NormalTok{(img\_path)}
+\ControlFlowTok{if}\NormalTok{ original\_img.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{    original\_img }\OperatorTok{=}\NormalTok{ original\_img.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{img\_array }\OperatorTok{=}\NormalTok{ np.array(original\_img, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+
+\CommentTok{\# Resize image if it\textquotesingle{}s too large for faster processing}
+\NormalTok{max\_size }\OperatorTok{=} \DecValTok{512}
+\ControlFlowTok{if}\NormalTok{ img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size }\KeywordTok{or}\NormalTok{ img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size:}
+\NormalTok{    scale }\OperatorTok{=}\NormalTok{ max\_size }\OperatorTok{/} \BuiltInTok{max}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{], img\_array.shape[}\DecValTok{1}\NormalTok{])}
+\NormalTok{    new\_size }\OperatorTok{=}\NormalTok{ (}\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale), }\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale))}
+\NormalTok{    img\_resized\_pil }\OperatorTok{=}\NormalTok{ original\_img.resize(new\_size, Image.Resampling.LANCZOS)}
+    \ControlFlowTok{if}\NormalTok{ img\_resized\_pil.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{        img\_resized\_pil }\OperatorTok{=}\NormalTok{ img\_resized\_pil.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ np.array(img\_resized\_pil, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Resized image from }\SpecialCharTok{\{}\NormalTok{img\_array}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{ to }\SpecialCharTok{\{}\NormalTok{img\_resized}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{ for processing"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_array.copy()}
+
+\CommentTok{\# Ensure img\_resized is 2D grayscale}
+\ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(img\_resized.shape) }\OperatorTok{\textgreater{}} \DecValTok{2}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_resized[:, :, }\DecValTok{0}\NormalTok{]}
+\ControlFlowTok{elif} \BuiltInTok{len}\NormalTok{(img\_resized.shape) }\OperatorTok{==} \DecValTok{2}\NormalTok{:}
+    \ControlFlowTok{pass}
+\ControlFlowTok{else}\NormalTok{:}
+    \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\SpecialStringTok{f"Unexpected image shape: }\SpecialCharTok{\{}\NormalTok{img\_resized}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Final image shape: }\SpecialCharTok{\{}\NormalTok{img\_resized}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{ (should be 2D for grayscale)"}\NormalTok{)}
+
+\CommentTok{\# Ensure compute\_importance function is available}
+\CommentTok{\# It should be from importance{-}map chunk, but we check to be safe}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    compute\_importance}
+\ControlFlowTok{except} \PreprocessorTok{NameError}\NormalTok{:}
+    \CommentTok{\# Redefine if not available (shouldn\textquotesingle{}t happen, but safety check)}
+    \KeywordTok{def}\NormalTok{ compute\_importance(}
+\NormalTok{        gray\_img: np.ndarray,}
+\NormalTok{        extreme\_downweight: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.5}\NormalTok{,}
+\NormalTok{        extreme\_threshold\_low: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{        extreme\_threshold\_high: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.8}\NormalTok{,}
+\NormalTok{        extreme\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.1}\NormalTok{,}
+\NormalTok{        mid\_tone\_boost: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{        mid\_tone\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.2}\NormalTok{,}
+\NormalTok{    ):}
+\NormalTok{        I }\OperatorTok{=}\NormalTok{ np.clip(gray\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        I\_inverted }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ I}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{0.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textless{}}\NormalTok{ extreme\_threshold\_low, dark\_mask, }\FloatTok{0.0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            dark\_mask }\OperatorTok{=}\NormalTok{ dark\_mask }\OperatorTok{/}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textgreater{}}\NormalTok{ extreme\_threshold\_high, light\_mask, }\FloatTok{0.0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            light\_mask }\OperatorTok{=}\NormalTok{ light\_mask }\OperatorTok{/}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        extreme\_mask }\OperatorTok{=}\NormalTok{ np.maximum(dark\_mask, light\_mask)}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ I\_inverted }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ extreme\_downweight }\OperatorTok{*}\NormalTok{ extreme\_mask)}
+\NormalTok{        mid\_tone\_center }\OperatorTok{=} \FloatTok{0.65}
+\NormalTok{        mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}}\NormalTok{ mid\_tone\_center) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (mid\_tone\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+        \ControlFlowTok{if}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ mid\_tone\_gaussian }\OperatorTok{/}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ importance }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{+}\NormalTok{ mid\_tone\_boost }\OperatorTok{*}\NormalTok{ mid\_tone\_gaussian)}
+\NormalTok{        m, M }\OperatorTok{=}\NormalTok{ importance.}\BuiltInTok{min}\NormalTok{(), importance.}\BuiltInTok{max}\NormalTok{()}
+        \ControlFlowTok{if}\NormalTok{ M }\OperatorTok{\textgreater{}}\NormalTok{ m: }
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ (importance }\OperatorTok{{-}}\NormalTok{ m) }\OperatorTok{/}\NormalTok{ (M }\OperatorTok{{-}}\NormalTok{ m)}
+        \ControlFlowTok{return}\NormalTok{ importance}
+
+\CommentTok{\# Compute importance map using default parameters}
+\NormalTok{importance\_map }\OperatorTok{=}\NormalTok{ compute\_importance(}
+\NormalTok{    img\_resized,}
+\NormalTok{    extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.2}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{,}
+\NormalTok{    extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}
+\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Importance map computed"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Resized image from (1060, 1600) to (339, 512) for processing
+Final image shape: (339, 512) (should be 2D for grayscale)
+Importance map computed
+\end{verbatim}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Resize image if needed}
+\NormalTok{max\_size }\OtherTok{\textless{}{-}} \DecValTok{512}
+\NormalTok{img\_dims }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(original\_img)}
+\ControlFlowTok{if}\NormalTok{(img\_dims[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_size }\SpecialCharTok{||}\NormalTok{ img\_dims[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_size) \{}
+\NormalTok{  scale }\OtherTok{\textless{}{-}}\NormalTok{ max\_size }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(img\_dims[}\DecValTok{1}\NormalTok{], img\_dims[}\DecValTok{2}\NormalTok{])}
+\NormalTok{  new\_size }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{round}\NormalTok{(img\_dims[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ scale), }\FunctionTok{round}\NormalTok{(img\_dims[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ scale))}
+\NormalTok{  img\_resized }\OtherTok{\textless{}{-}} \FunctionTok{resize}\NormalTok{(original\_img, new\_size[}\DecValTok{1}\NormalTok{], new\_size[}\DecValTok{2}\NormalTok{])}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Resized image to"}\NormalTok{, new\_size[}\DecValTok{1}\NormalTok{], }\StringTok{"x"}\NormalTok{, new\_size[}\DecValTok{2}\NormalTok{], }\StringTok{"for processing}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  img\_resized }\OtherTok{\textless{}{-}}\NormalTok{ original\_img}
+\NormalTok{\}}
+
+\CommentTok{\# Convert to matrix and normalize}
+\NormalTok{img\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(img\_resized)}
+\NormalTok{img\_matrix }\OtherTok{\textless{}{-}}\NormalTok{ img\_matrix }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(img\_matrix)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Final image shape:"}\NormalTok{, }\FunctionTok{dim}\NormalTok{(img\_matrix)[}\DecValTok{1}\NormalTok{], }\StringTok{"x"}\NormalTok{, }\FunctionTok{dim}\NormalTok{(img\_matrix)[}\DecValTok{2}\NormalTok{], }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\CommentTok{\# Compute importance map}
+\NormalTok{importance\_map }\OtherTok{\textless{}{-}} \FunctionTok{compute\_importance}\NormalTok{(img\_matrix)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Importance map computed}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Generating the Stippled
+Image}\label{generating-the-stippled-image}
+
+Now let's apply the stippling algorithm to create the blue noise
+stippling pattern.
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+
+\CommentTok{\# Reload and prepare image (since chunks don\textquotesingle{}t share state)}
+\NormalTok{img\_path }\OperatorTok{=} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OperatorTok{=}\NormalTok{ Image.}\BuiltInTok{open}\NormalTok{(img\_path)}
+\ControlFlowTok{if}\NormalTok{ original\_img.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{    original\_img }\OperatorTok{=}\NormalTok{ original\_img.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{img\_array }\OperatorTok{=}\NormalTok{ np.array(original\_img, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+
+\CommentTok{\# Resize if needed}
+\NormalTok{max\_size }\OperatorTok{=} \DecValTok{512}
+\ControlFlowTok{if}\NormalTok{ img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size }\KeywordTok{or}\NormalTok{ img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size:}
+\NormalTok{    scale }\OperatorTok{=}\NormalTok{ max\_size }\OperatorTok{/} \BuiltInTok{max}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{], img\_array.shape[}\DecValTok{1}\NormalTok{])}
+\NormalTok{    new\_size }\OperatorTok{=}\NormalTok{ (}\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale), }\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale))}
+\NormalTok{    img\_resized\_pil }\OperatorTok{=}\NormalTok{ original\_img.resize(new\_size, Image.Resampling.LANCZOS)}
+    \ControlFlowTok{if}\NormalTok{ img\_resized\_pil.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{        img\_resized\_pil }\OperatorTok{=}\NormalTok{ img\_resized\_pil.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ np.array(img\_resized\_pil, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_array.copy()}
+
+\ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(img\_resized.shape) }\OperatorTok{\textgreater{}} \DecValTok{2}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_resized[:, :, }\DecValTok{0}\NormalTok{]}
+
+\CommentTok{\# Compute importance map}
+\KeywordTok{def}\NormalTok{ compute\_importance(}
+\NormalTok{    gray\_img: np.ndarray,}
+\NormalTok{    extreme\_downweight: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.5}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_low: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_high: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.8}\NormalTok{,}
+\NormalTok{    extreme\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.1}\NormalTok{,}
+\NormalTok{    mid\_tone\_boost: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.4}\NormalTok{,}
+\NormalTok{    mid\_tone\_sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.2}\NormalTok{,}
+\NormalTok{):}
+\NormalTok{    I }\OperatorTok{=}\NormalTok{ np.clip(gray\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{    I\_inverted }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ I}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{0.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textless{}}\NormalTok{ extreme\_threshold\_low, dark\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ dark\_mask }\OperatorTok{/}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textgreater{}}\NormalTok{ extreme\_threshold\_high, light\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ light\_mask }\OperatorTok{/}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    extreme\_mask }\OperatorTok{=}\NormalTok{ np.maximum(dark\_mask, light\_mask)}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ I\_inverted }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ extreme\_downweight }\OperatorTok{*}\NormalTok{ extreme\_mask)}
+\NormalTok{    mid\_tone\_center }\OperatorTok{=} \FloatTok{0.65}
+\NormalTok{    mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}}\NormalTok{ mid\_tone\_center) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (mid\_tone\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+    \ControlFlowTok{if}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ mid\_tone\_gaussian }\OperatorTok{/}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ importance }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{+}\NormalTok{ mid\_tone\_boost }\OperatorTok{*}\NormalTok{ mid\_tone\_gaussian)}
+\NormalTok{    m, M }\OperatorTok{=}\NormalTok{ importance.}\BuiltInTok{min}\NormalTok{(), importance.}\BuiltInTok{max}\NormalTok{()}
+    \ControlFlowTok{if}\NormalTok{ M }\OperatorTok{\textgreater{}}\NormalTok{ m: }
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ (importance }\OperatorTok{{-}}\NormalTok{ m) }\OperatorTok{/}\NormalTok{ (M }\OperatorTok{{-}}\NormalTok{ m)}
+    \ControlFlowTok{return}\NormalTok{ importance}
+
+\NormalTok{importance\_map }\OperatorTok{=}\NormalTok{ compute\_importance(}
+\NormalTok{    img\_resized,}
+\NormalTok{    extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.2}\NormalTok{,}
+\NormalTok{    extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{,}
+\NormalTok{    extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}
+\NormalTok{)}
+
+\CommentTok{\# Redefine functions if not available}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    void\_and\_cluster}
+\ControlFlowTok{except} \PreprocessorTok{NameError}\NormalTok{:}
+    \CommentTok{\# Need to redefine void\_and\_cluster and dependencies}
+    \KeywordTok{def}\NormalTok{ toroidal\_gaussian\_kernel(h: }\BuiltInTok{int}\NormalTok{, w: }\BuiltInTok{int}\NormalTok{, sigma: }\BuiltInTok{float}\NormalTok{):}
+\NormalTok{        y }\OperatorTok{=}\NormalTok{ np.arange(h)}
+\NormalTok{        x }\OperatorTok{=}\NormalTok{ np.arange(w)}
+\NormalTok{        dy }\OperatorTok{=}\NormalTok{ np.minimum(y, h }\OperatorTok{{-}}\NormalTok{ y)[:, }\VariableTok{None}\NormalTok{]}
+\NormalTok{        dx }\OperatorTok{=}\NormalTok{ np.minimum(x, w }\OperatorTok{{-}}\NormalTok{ x)[}\VariableTok{None}\NormalTok{, :]}
+\NormalTok{        kern }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{(dx}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ dy}\OperatorTok{**}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ sigma}\OperatorTok{**}\DecValTok{2}\NormalTok{))}
+\NormalTok{        s }\OperatorTok{=}\NormalTok{ kern.}\BuiltInTok{sum}\NormalTok{()}
+        \ControlFlowTok{if}\NormalTok{ s }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            kern }\OperatorTok{/=}\NormalTok{ s}
+        \ControlFlowTok{return}\NormalTok{ kern}
+    
+    \KeywordTok{def}\NormalTok{ void\_and\_cluster(}
+\NormalTok{        input\_img: np.ndarray,}
+\NormalTok{        percentage: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.08}\NormalTok{,}
+\NormalTok{        sigma: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.9}\NormalTok{,}
+\NormalTok{        content\_bias: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.9}\NormalTok{,}
+\NormalTok{        importance\_img: np.ndarray }\OperatorTok{|} \VariableTok{None} \OperatorTok{=} \VariableTok{None}\NormalTok{,}
+\NormalTok{        noise\_scale\_factor: }\BuiltInTok{float} \OperatorTok{=} \FloatTok{0.1}\NormalTok{,}
+\NormalTok{    ):}
+\NormalTok{        I }\OperatorTok{=}\NormalTok{ np.clip(input\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        h, w }\OperatorTok{=}\NormalTok{ I.shape}
+        \ControlFlowTok{if}\NormalTok{ importance\_img }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ compute\_importance(I)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ np.clip(importance\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        kernel }\OperatorTok{=}\NormalTok{ toroidal\_gaussian\_kernel(h, w, sigma)}
+\NormalTok{        energy\_current }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{importance }\OperatorTok{*}\NormalTok{ content\_bias}
+\NormalTok{        final\_stipple }\OperatorTok{=}\NormalTok{ np.ones\_like(I)}
+\NormalTok{        samples }\OperatorTok{=}\NormalTok{ []}
+        \KeywordTok{def}\NormalTok{ energy\_splat(y, x):}
+            \ControlFlowTok{return}\NormalTok{ np.roll(np.roll(kernel, shift}\OperatorTok{=}\NormalTok{y, axis}\OperatorTok{=}\DecValTok{0}\NormalTok{), shift}\OperatorTok{=}\NormalTok{x, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{        num\_points }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(I.size }\OperatorTok{*}\NormalTok{ percentage)}
+\NormalTok{        cy, cx }\OperatorTok{=}\NormalTok{ h }\OperatorTok{//} \DecValTok{2}\NormalTok{, w }\OperatorTok{//} \DecValTok{2}
+\NormalTok{        r }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(}\DecValTok{20}\NormalTok{, h }\OperatorTok{//} \DecValTok{10}\NormalTok{, w }\OperatorTok{//} \DecValTok{10}\NormalTok{)}
+\NormalTok{        ys }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cy }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(h, cy }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{        xs }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cx }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(w, cx }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{        region }\OperatorTok{=}\NormalTok{ energy\_current[ys, xs]}
+\NormalTok{        flat }\OperatorTok{=}\NormalTok{ np.argmin(region)}
+\NormalTok{        y0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{//}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cy }\OperatorTok{{-}}\NormalTok{ r)}
+\NormalTok{        x0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{\%}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cx }\OperatorTok{{-}}\NormalTok{ r)}
+\NormalTok{        energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y0, x0)}
+\NormalTok{        energy\_current[y0, x0] }\OperatorTok{=}\NormalTok{ np.inf}
+\NormalTok{        samples.append((y0, x0, I[y0, x0]))}
+\NormalTok{        final\_stipple[y0, x0] }\OperatorTok{=} \FloatTok{0.0}
+        \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, num\_points):}
+\NormalTok{            exploration }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ (i }\OperatorTok{/}\NormalTok{ num\_points) }\OperatorTok{*} \FloatTok{0.5}
+\NormalTok{            noise }\OperatorTok{=}\NormalTok{ np.random.normal(}\FloatTok{0.0}\NormalTok{, noise\_scale\_factor }\OperatorTok{*}\NormalTok{ content\_bias }\OperatorTok{*}\NormalTok{ exploration, size}\OperatorTok{=}\NormalTok{energy\_current.shape)}
+\NormalTok{            energy\_with\_noise }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ noise}
+\NormalTok{            pos\_flat }\OperatorTok{=}\NormalTok{ np.argmin(energy\_with\_noise)}
+\NormalTok{            y }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{//}\NormalTok{ w}
+\NormalTok{            x }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{\%}\NormalTok{ w}
+\NormalTok{            energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y, x)}
+\NormalTok{            energy\_current[y, x] }\OperatorTok{=}\NormalTok{ np.inf}
+\NormalTok{            samples.append((y, x, I[y, x]))}
+\NormalTok{            final\_stipple[y, x] }\OperatorTok{=} \FloatTok{0.0}
+        \ControlFlowTok{return}\NormalTok{ final\_stipple, np.array(samples)}
+
+\CommentTok{\# Generate stippling pattern}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Generating blue noise stippling pattern..."}\NormalTok{)}
+\NormalTok{stipple\_pattern, samples }\OperatorTok{=}\NormalTok{ void\_and\_cluster(}
+\NormalTok{    img\_resized,}
+\NormalTok{    percentage}\OperatorTok{=}\FloatTok{0.08}\NormalTok{,}
+\NormalTok{    sigma}\OperatorTok{=}\FloatTok{0.9}\NormalTok{,}
+\NormalTok{    content\_bias}\OperatorTok{=}\FloatTok{0.9}\NormalTok{,}
+\NormalTok{    importance\_img}\OperatorTok{=}\NormalTok{importance\_map,}
+\NormalTok{    noise\_scale\_factor}\OperatorTok{=}\FloatTok{0.1}
+\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Generated }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(samples)}\SpecialCharTok{\}}\SpecialStringTok{ stipple points"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Stipple pattern shape: }\SpecialCharTok{\{}\NormalTok{stipple\_pattern}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Generating blue noise stippling pattern...
+Generated 13885 stipple points
+Stipple pattern shape: (339, 512)
+\end{verbatim}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Generate stippling pattern}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Generating blue noise stippling pattern...}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{stipple\_result }\OtherTok{\textless{}{-}} \FunctionTok{void\_and\_cluster}\NormalTok{(}
+\NormalTok{  img\_matrix,}
+  \AttributeTok{percentage =} \FloatTok{0.08}\NormalTok{,}
+  \AttributeTok{sigma =} \FloatTok{0.9}\NormalTok{,}
+  \AttributeTok{content\_bias =} \FloatTok{0.9}\NormalTok{,}
+  \AttributeTok{importance\_img =}\NormalTok{ importance\_map,}
+  \AttributeTok{noise\_scale\_factor =} \FloatTok{0.1}
+\NormalTok{)}
+
+\NormalTok{stipple\_pattern }\OtherTok{\textless{}{-}}\NormalTok{ stipple\_result}\SpecialCharTok{$}\NormalTok{stipple}
+\NormalTok{samples }\OtherTok{\textless{}{-}}\NormalTok{ stipple\_result}\SpecialCharTok{$}\NormalTok{samples}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Generated"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(samples), }\StringTok{"stipple points}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Stipple pattern shape:"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(stipple\_pattern), }\StringTok{"x"}\NormalTok{, }\FunctionTok{ncol}\NormalTok{(stipple\_pattern), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Displaying the Results}\label{displaying-the-results}
+
+Let's visualize the original image, the importance map, and the stippled
+version side by side for comparison.
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+\ImportTok{import}\NormalTok{ matplotlib}
+\NormalTok{matplotlib.use(}\StringTok{\textquotesingle{}Agg\textquotesingle{}}\NormalTok{)  }\CommentTok{\# Use non{-}interactive backend}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Reload and prepare image (since chunks don\textquotesingle{}t share state)}
+\NormalTok{img\_path }\OperatorTok{=} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OperatorTok{=}\NormalTok{ Image.}\BuiltInTok{open}\NormalTok{(img\_path)}
+\ControlFlowTok{if}\NormalTok{ original\_img.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{    original\_img }\OperatorTok{=}\NormalTok{ original\_img.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{img\_array }\OperatorTok{=}\NormalTok{ np.array(original\_img, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+
+\CommentTok{\# Resize if needed}
+\NormalTok{max\_size }\OperatorTok{=} \DecValTok{512}
+\ControlFlowTok{if}\NormalTok{ img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size }\KeywordTok{or}\NormalTok{ img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size:}
+\NormalTok{    scale }\OperatorTok{=}\NormalTok{ max\_size }\OperatorTok{/} \BuiltInTok{max}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{], img\_array.shape[}\DecValTok{1}\NormalTok{])}
+\NormalTok{    new\_size }\OperatorTok{=}\NormalTok{ (}\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale), }\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale))}
+\NormalTok{    img\_resized\_pil }\OperatorTok{=}\NormalTok{ original\_img.resize(new\_size, Image.Resampling.LANCZOS)}
+    \ControlFlowTok{if}\NormalTok{ img\_resized\_pil.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{        img\_resized\_pil }\OperatorTok{=}\NormalTok{ img\_resized\_pil.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ np.array(img\_resized\_pil, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_array.copy()}
+
+\ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(img\_resized.shape) }\OperatorTok{\textgreater{}} \DecValTok{2}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_resized[:, :, }\DecValTok{0}\NormalTok{]}
+
+\CommentTok{\# Compute importance map}
+\KeywordTok{def}\NormalTok{ compute\_importance(gray\_img, extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, }
+\NormalTok{                       extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{, extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}\NormalTok{, mid\_tone\_boost}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, mid\_tone\_sigma}\OperatorTok{=}\FloatTok{0.2}\NormalTok{):}
+\NormalTok{    I }\OperatorTok{=}\NormalTok{ np.clip(gray\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{    I\_inverted }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ I}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{0.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    dark\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textless{}}\NormalTok{ extreme\_threshold\_low, dark\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ dark\_mask }\OperatorTok{/}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{    light\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textgreater{}}\NormalTok{ extreme\_threshold\_high, light\_mask, }\FloatTok{0.0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ light\_mask }\OperatorTok{/}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    extreme\_mask }\OperatorTok{=}\NormalTok{ np.maximum(dark\_mask, light\_mask)}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ I\_inverted }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ extreme\_downweight }\OperatorTok{*}\NormalTok{ extreme\_mask)}
+\NormalTok{    mid\_tone\_center }\OperatorTok{=} \FloatTok{0.65}
+\NormalTok{    mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}}\NormalTok{ mid\_tone\_center) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (mid\_tone\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+    \ControlFlowTok{if}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{        mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ mid\_tone\_gaussian }\OperatorTok{/}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{    importance }\OperatorTok{=}\NormalTok{ importance }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{+}\NormalTok{ mid\_tone\_boost }\OperatorTok{*}\NormalTok{ mid\_tone\_gaussian)}
+\NormalTok{    m, M }\OperatorTok{=}\NormalTok{ importance.}\BuiltInTok{min}\NormalTok{(), importance.}\BuiltInTok{max}\NormalTok{()}
+    \ControlFlowTok{if}\NormalTok{ M }\OperatorTok{\textgreater{}}\NormalTok{ m: }
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ (importance }\OperatorTok{{-}}\NormalTok{ m) }\OperatorTok{/}\NormalTok{ (M }\OperatorTok{{-}}\NormalTok{ m)}
+    \ControlFlowTok{return}\NormalTok{ importance}
+
+\NormalTok{importance\_map }\OperatorTok{=}\NormalTok{ compute\_importance(img\_resized, extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.2}\NormalTok{, }
+\NormalTok{                                    extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{, extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}\NormalTok{)}
+
+\CommentTok{\# Try to use stipple\_pattern from generate{-}stipple chunk if available}
+\CommentTok{\# If not, we\textquotesingle{}ll show a placeholder}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    stipple\_pattern}
+\NormalTok{    has\_stipple }\OperatorTok{=} \VariableTok{True}
+\ControlFlowTok{except} \PreprocessorTok{NameError}\NormalTok{:}
+\NormalTok{    has\_stipple }\OperatorTok{=} \VariableTok{False}
+    \CommentTok{\# Create a simple placeholder}
+\NormalTok{    stipple\_pattern }\OperatorTok{=}\NormalTok{ np.ones\_like(img\_resized)}
+
+\ControlFlowTok{if}\NormalTok{ has\_stipple:}
+\NormalTok{    fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    fig, axes }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+
+\CommentTok{\# Display original image}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].imshow(img\_resized, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, vmin}\OperatorTok{=}\DecValTok{0}\NormalTok{, vmax}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].axis(}\StringTok{\textquotesingle{}off\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{0}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Original Image\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{, pad}\OperatorTok{=}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Display importance map}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].imshow(importance\_map, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, vmin}\OperatorTok{=}\DecValTok{0}\NormalTok{, vmax}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].axis(}\StringTok{\textquotesingle{}off\textquotesingle{}}\NormalTok{)}
+\NormalTok{axes[}\DecValTok{1}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Importance Map\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{, pad}\OperatorTok{=}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Display stippled image (if available)}
+\ControlFlowTok{if}\NormalTok{ has\_stipple:}
+\NormalTok{    axes[}\DecValTok{2}\NormalTok{].imshow(stipple\_pattern, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}gray\textquotesingle{}}\NormalTok{, vmin}\OperatorTok{=}\DecValTok{0}\NormalTok{, vmax}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{2}\NormalTok{].axis(}\StringTok{\textquotesingle{}off\textquotesingle{}}\NormalTok{)}
+\NormalTok{    axes[}\DecValTok{2}\NormalTok{].set\_title(}\StringTok{\textquotesingle{}Blue Noise Stippling\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{14}\NormalTok{, fontweight}\OperatorTok{=}\StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{, pad}\OperatorTok{=}\DecValTok{10}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \CommentTok{\# Show message that stippling should be generated in previous chunk}
+\NormalTok{    axes[}\DecValTok{1}\NormalTok{].text(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}Stippling pattern}\CharTok{\textbackslash{}n}\StringTok{will be shown here}\CharTok{\textbackslash{}n}\StringTok{(after generate{-}stipple chunk)\textquotesingle{}}\NormalTok{, }
+\NormalTok{                 ha}\OperatorTok{=}\StringTok{\textquotesingle{}center\textquotesingle{}}\NormalTok{, va}\OperatorTok{=}\StringTok{\textquotesingle{}center\textquotesingle{}}\NormalTok{, fontsize}\OperatorTok{=}\DecValTok{12}\NormalTok{, transform}\OperatorTok{=}\NormalTok{axes[}\DecValTok{1}\NormalTok{].transAxes)}
+
+\NormalTok{plt.tight\_layout()}
+\CommentTok{\# plt.show() removed {-} Quarto will handle figure display}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{), }\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+
+\FunctionTok{plot}\NormalTok{(img\_resized, }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{main =} \StringTok{"Original Image"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{as.cimg}\NormalTok{(importance\_map), }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{main =} \StringTok{"Importance Map"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{as.cimg}\NormalTok{(stipple\_pattern), }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{main =} \StringTok{"Blue Noise Stippling"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Progressive Stippling
+Animation}\label{progressive-stippling-animation}
+
+This section creates a GIF showing how the stippled image looks as more
+points are added sequentially. We'll use the already-computed stippling
+points to generate frames at increments of 100 points.
+
+\subsubsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+\ImportTok{import}\NormalTok{ matplotlib}
+\NormalTok{matplotlib.use(}\StringTok{\textquotesingle{}Agg\textquotesingle{}}\NormalTok{)  }\CommentTok{\# Use non{-}interactive backend}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{from}\NormalTok{ matplotlib.animation }\ImportTok{import}\NormalTok{ PillowWriter}
+
+\CommentTok{\# Reload and prepare image (since chunks don\textquotesingle{}t share state)}
+\NormalTok{img\_path }\OperatorTok{=} \StringTok{\textquotesingle{}florida\_beach\_picture.jpg\textquotesingle{}}
+\NormalTok{original\_img }\OperatorTok{=}\NormalTok{ Image.}\BuiltInTok{open}\NormalTok{(img\_path)}
+\ControlFlowTok{if}\NormalTok{ original\_img.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{    original\_img }\OperatorTok{=}\NormalTok{ original\_img.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{img\_array }\OperatorTok{=}\NormalTok{ np.array(original\_img, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+
+\CommentTok{\# Resize if needed}
+\NormalTok{max\_size }\OperatorTok{=} \DecValTok{512}
+\ControlFlowTok{if}\NormalTok{ img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size }\KeywordTok{or}\NormalTok{ img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ max\_size:}
+\NormalTok{    scale }\OperatorTok{=}\NormalTok{ max\_size }\OperatorTok{/} \BuiltInTok{max}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{], img\_array.shape[}\DecValTok{1}\NormalTok{])}
+\NormalTok{    new\_size }\OperatorTok{=}\NormalTok{ (}\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale), }\BuiltInTok{int}\NormalTok{(img\_array.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{*}\NormalTok{ scale))}
+\NormalTok{    img\_resized\_pil }\OperatorTok{=}\NormalTok{ original\_img.resize(new\_size, Image.Resampling.LANCZOS)}
+    \ControlFlowTok{if}\NormalTok{ img\_resized\_pil.mode }\OperatorTok{!=} \StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{:}
+\NormalTok{        img\_resized\_pil }\OperatorTok{=}\NormalTok{ img\_resized\_pil.convert(}\StringTok{\textquotesingle{}L\textquotesingle{}}\NormalTok{)}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ np.array(img\_resized\_pil, dtype}\OperatorTok{=}\NormalTok{np.float32) }\OperatorTok{/} \FloatTok{255.0}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_array.copy()}
+
+\ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(img\_resized.shape) }\OperatorTok{\textgreater{}} \DecValTok{2}\NormalTok{:}
+\NormalTok{    img\_resized }\OperatorTok{=}\NormalTok{ img\_resized[:, :, }\DecValTok{0}\NormalTok{]}
+
+\CommentTok{\# Check if samples are available from generate{-}stipple chunk}
+\CommentTok{\# If not, we\textquotesingle{}ll regenerate the stippling (since chunks don\textquotesingle{}t share state)}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    samples}
+\NormalTok{    has\_samples }\OperatorTok{=} \VariableTok{True}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Using samples from generate{-}stipple chunk"}\NormalTok{)}
+\ControlFlowTok{except} \PreprocessorTok{NameError}\NormalTok{:}
+\NormalTok{    has\_samples }\OperatorTok{=} \VariableTok{False}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Samples not found. Regenerating stippling for progressive animation..."}\NormalTok{)}
+    
+    \CommentTok{\# Redefine functions needed for stippling}
+    \KeywordTok{def}\NormalTok{ compute\_importance(gray\_img, extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, }
+\NormalTok{                           extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{, extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}\NormalTok{, mid\_tone\_boost}\OperatorTok{=}\FloatTok{0.4}\NormalTok{, mid\_tone\_sigma}\OperatorTok{=}\FloatTok{0.2}\NormalTok{):}
+\NormalTok{        I }\OperatorTok{=}\NormalTok{ np.clip(gray\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        I\_inverted }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ I}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{0.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{        dark\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textless{}}\NormalTok{ extreme\_threshold\_low, dark\_mask, }\FloatTok{0.0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            dark\_mask }\OperatorTok{=}\NormalTok{ dark\_mask }\OperatorTok{/}\NormalTok{ dark\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}} \FloatTok{1.0}\NormalTok{) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (extreme\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+\NormalTok{        light\_mask }\OperatorTok{=}\NormalTok{ np.where(I }\OperatorTok{\textgreater{}}\NormalTok{ extreme\_threshold\_high, light\_mask, }\FloatTok{0.0}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            light\_mask }\OperatorTok{=}\NormalTok{ light\_mask }\OperatorTok{/}\NormalTok{ light\_mask.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        extreme\_mask }\OperatorTok{=}\NormalTok{ np.maximum(dark\_mask, light\_mask)}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ I\_inverted }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ extreme\_downweight }\OperatorTok{*}\NormalTok{ extreme\_mask)}
+\NormalTok{        mid\_tone\_center }\OperatorTok{=} \FloatTok{0.65}
+\NormalTok{        mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{((I }\OperatorTok{{-}}\NormalTok{ mid\_tone\_center) }\OperatorTok{**} \DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ (mid\_tone\_sigma }\OperatorTok{**} \DecValTok{2}\NormalTok{)))}
+        \ControlFlowTok{if}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{() }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            mid\_tone\_gaussian }\OperatorTok{=}\NormalTok{ mid\_tone\_gaussian }\OperatorTok{/}\NormalTok{ mid\_tone\_gaussian.}\BuiltInTok{max}\NormalTok{()}
+\NormalTok{        importance }\OperatorTok{=}\NormalTok{ importance }\OperatorTok{*}\NormalTok{ (}\FloatTok{1.0} \OperatorTok{+}\NormalTok{ mid\_tone\_boost }\OperatorTok{*}\NormalTok{ mid\_tone\_gaussian)}
+\NormalTok{        m, M }\OperatorTok{=}\NormalTok{ importance.}\BuiltInTok{min}\NormalTok{(), importance.}\BuiltInTok{max}\NormalTok{()}
+        \ControlFlowTok{if}\NormalTok{ M }\OperatorTok{\textgreater{}}\NormalTok{ m: }
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ (importance }\OperatorTok{{-}}\NormalTok{ m) }\OperatorTok{/}\NormalTok{ (M }\OperatorTok{{-}}\NormalTok{ m)}
+        \ControlFlowTok{return}\NormalTok{ importance}
+    
+    \KeywordTok{def}\NormalTok{ toroidal\_gaussian\_kernel(h, w, sigma):}
+\NormalTok{        y }\OperatorTok{=}\NormalTok{ np.arange(h)}
+\NormalTok{        x }\OperatorTok{=}\NormalTok{ np.arange(w)}
+\NormalTok{        dy }\OperatorTok{=}\NormalTok{ np.minimum(y, h }\OperatorTok{{-}}\NormalTok{ y)[:, }\VariableTok{None}\NormalTok{]}
+\NormalTok{        dx }\OperatorTok{=}\NormalTok{ np.minimum(x, w }\OperatorTok{{-}}\NormalTok{ x)[}\VariableTok{None}\NormalTok{, :]}
+\NormalTok{        kern }\OperatorTok{=}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{(dx}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ dy}\OperatorTok{**}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\NormalTok{ (}\FloatTok{2.0} \OperatorTok{*}\NormalTok{ sigma}\OperatorTok{**}\DecValTok{2}\NormalTok{))}
+\NormalTok{        s }\OperatorTok{=}\NormalTok{ kern.}\BuiltInTok{sum}\NormalTok{()}
+        \ControlFlowTok{if}\NormalTok{ s }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            kern }\OperatorTok{/=}\NormalTok{ s}
+        \ControlFlowTok{return}\NormalTok{ kern}
+    
+    \KeywordTok{def}\NormalTok{ void\_and\_cluster(input\_img, percentage}\OperatorTok{=}\FloatTok{0.08}\NormalTok{, sigma}\OperatorTok{=}\FloatTok{0.9}\NormalTok{, content\_bias}\OperatorTok{=}\FloatTok{0.9}\NormalTok{, }
+\NormalTok{                         importance\_img}\OperatorTok{=}\VariableTok{None}\NormalTok{, noise\_scale\_factor}\OperatorTok{=}\FloatTok{0.1}\NormalTok{):}
+\NormalTok{        I }\OperatorTok{=}\NormalTok{ np.clip(input\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        h, w }\OperatorTok{=}\NormalTok{ I.shape}
+        \ControlFlowTok{if}\NormalTok{ importance\_img }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ compute\_importance(I)}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            importance }\OperatorTok{=}\NormalTok{ np.clip(importance\_img, }\FloatTok{0.0}\NormalTok{, }\FloatTok{1.0}\NormalTok{)}
+\NormalTok{        kernel }\OperatorTok{=}\NormalTok{ toroidal\_gaussian\_kernel(h, w, sigma)}
+\NormalTok{        energy\_current }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{importance }\OperatorTok{*}\NormalTok{ content\_bias}
+\NormalTok{        final\_stipple }\OperatorTok{=}\NormalTok{ np.ones\_like(I)}
+\NormalTok{        samples\_list }\OperatorTok{=}\NormalTok{ []}
+        \KeywordTok{def}\NormalTok{ energy\_splat(y, x):}
+            \ControlFlowTok{return}\NormalTok{ np.roll(np.roll(kernel, shift}\OperatorTok{=}\NormalTok{y, axis}\OperatorTok{=}\DecValTok{0}\NormalTok{), shift}\OperatorTok{=}\NormalTok{x, axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{        num\_points }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(I.size }\OperatorTok{*}\NormalTok{ percentage)}
+\NormalTok{        cy, cx }\OperatorTok{=}\NormalTok{ h }\OperatorTok{//} \DecValTok{2}\NormalTok{, w }\OperatorTok{//} \DecValTok{2}
+\NormalTok{        r }\OperatorTok{=} \BuiltInTok{min}\NormalTok{(}\DecValTok{20}\NormalTok{, h }\OperatorTok{//} \DecValTok{10}\NormalTok{, w }\OperatorTok{//} \DecValTok{10}\NormalTok{)}
+\NormalTok{        ys }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cy }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(h, cy }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{        xs }\OperatorTok{=} \BuiltInTok{slice}\NormalTok{(}\BuiltInTok{max}\NormalTok{(}\DecValTok{0}\NormalTok{, cx }\OperatorTok{{-}}\NormalTok{ r), }\BuiltInTok{min}\NormalTok{(w, cx }\OperatorTok{+}\NormalTok{ r))}
+\NormalTok{        region }\OperatorTok{=}\NormalTok{ energy\_current[ys, xs]}
+\NormalTok{        flat }\OperatorTok{=}\NormalTok{ np.argmin(region)}
+\NormalTok{        y0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{//}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cy }\OperatorTok{{-}}\NormalTok{ r)}
+\NormalTok{        x0 }\OperatorTok{=}\NormalTok{ flat }\OperatorTok{\%}\NormalTok{ (region.shape[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ (cx }\OperatorTok{{-}}\NormalTok{ r)}
+\NormalTok{        energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y0, x0)}
+\NormalTok{        energy\_current[y0, x0] }\OperatorTok{=}\NormalTok{ np.inf}
+\NormalTok{        samples\_list.append((y0, x0, I[y0, x0]))}
+\NormalTok{        final\_stipple[y0, x0] }\OperatorTok{=} \FloatTok{0.0}
+        \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, num\_points):}
+\NormalTok{            exploration }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}}\NormalTok{ (i }\OperatorTok{/}\NormalTok{ num\_points) }\OperatorTok{*} \FloatTok{0.5}
+\NormalTok{            noise }\OperatorTok{=}\NormalTok{ np.random.normal(}\FloatTok{0.0}\NormalTok{, noise\_scale\_factor }\OperatorTok{*}\NormalTok{ content\_bias }\OperatorTok{*}\NormalTok{ exploration, size}\OperatorTok{=}\NormalTok{energy\_current.shape)}
+\NormalTok{            energy\_with\_noise }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ noise}
+\NormalTok{            pos\_flat }\OperatorTok{=}\NormalTok{ np.argmin(energy\_with\_noise)}
+\NormalTok{            y }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{//}\NormalTok{ w}
+\NormalTok{            x }\OperatorTok{=}\NormalTok{ pos\_flat }\OperatorTok{\%}\NormalTok{ w}
+\NormalTok{            energy\_current }\OperatorTok{=}\NormalTok{ energy\_current }\OperatorTok{+}\NormalTok{ energy\_splat(y, x)}
+\NormalTok{            energy\_current[y, x] }\OperatorTok{=}\NormalTok{ np.inf}
+\NormalTok{            samples\_list.append((y, x, I[y, x]))}
+\NormalTok{            final\_stipple[y, x] }\OperatorTok{=} \FloatTok{0.0}
+        \ControlFlowTok{return}\NormalTok{ final\_stipple, np.array(samples\_list)}
+    
+    \CommentTok{\# Compute importance map and generate stippling}
+\NormalTok{    importance\_map }\OperatorTok{=}\NormalTok{ compute\_importance(img\_resized, extreme\_downweight}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, }
+\NormalTok{                                        extreme\_threshold\_low}\OperatorTok{=}\FloatTok{0.2}\NormalTok{, extreme\_threshold\_high}\OperatorTok{=}\FloatTok{0.8}\NormalTok{, extreme\_sigma}\OperatorTok{=}\FloatTok{0.1}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Generating stippling pattern for progressive animation..."}\NormalTok{)}
+\NormalTok{    stipple\_pattern, samples }\OperatorTok{=}\NormalTok{ void\_and\_cluster(img\_resized, percentage}\OperatorTok{=}\FloatTok{0.08}\NormalTok{, sigma}\OperatorTok{=}\FloatTok{0.9}\NormalTok{, }
+\NormalTok{                                                content\_bias}\OperatorTok{=}\FloatTok{0.9}\NormalTok{, importance\_img}\OperatorTok{=}\NormalTok{importance\_map, noise\_scale\_factor}\OperatorTok{=}\FloatTok{0.1}\NormalTok{)}
+\NormalTok{    has\_samples }\OperatorTok{=} \VariableTok{True}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Generated }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(samples)}\SpecialCharTok{\}}\SpecialStringTok{ stipple points for progressive animation"}\NormalTok{)}
+
+\CommentTok{\# Use the existing samples array from the already{-}computed stippling}
+\ControlFlowTok{if}\NormalTok{ has\_samples:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Using existing stippling with }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(samples)}\SpecialCharTok{\}}\SpecialStringTok{ points"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Note: Progressive stippling requires samples from generate{-}stipple chunk."}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"This chunk will create frames, but samples should be generated first."}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Image shape: }\SpecialCharTok{\{}\NormalTok{img\_resized}\SpecialCharTok{.}\NormalTok{shape}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Create progressive frames by adding points sequentially}
+\NormalTok{frame\_increment }\OperatorTok{=} \DecValTok{100}
+\NormalTok{frames }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{point\_counts }\OperatorTok{=}\NormalTok{ []}
+
+\CommentTok{\# Start with white background}
+\NormalTok{h, w }\OperatorTok{=}\NormalTok{ img\_resized.shape}
+\NormalTok{progressive\_stipple }\OperatorTok{=}\NormalTok{ np.ones\_like(img\_resized)}
+
+\CommentTok{\# Add first point and save initial frame}
+\ControlFlowTok{if}\NormalTok{ has\_samples }\KeywordTok{and} \BuiltInTok{len}\NormalTok{(samples) }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{    y0, x0, intensity0 }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(samples[}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{]), }\BuiltInTok{int}\NormalTok{(samples[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{]), samples[}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+\NormalTok{    progressive\_stipple[y0, x0] }\OperatorTok{=} \FloatTok{0.0}
+\NormalTok{    frames.append(progressive\_stipple.copy())}
+\NormalTok{    point\_counts.append(}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Add remaining points sequentially and save frames at increments}
+\ControlFlowTok{if}\NormalTok{ has\_samples:}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, }\BuiltInTok{len}\NormalTok{(samples)):}
+\NormalTok{        y, x }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(samples[i, }\DecValTok{0}\NormalTok{]), }\BuiltInTok{int}\NormalTok{(samples[i, }\DecValTok{1}\NormalTok{])}
+\NormalTok{        progressive\_stipple[y, x] }\OperatorTok{=} \FloatTok{0.0}  \CommentTok{\# Add black dot}
+        
+        \CommentTok{\# Save frame at increments (100, 200, 300, ...) and at the end}
+        \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{+} \DecValTok{1}\NormalTok{) }\OperatorTok{\%}\NormalTok{ frame\_increment }\OperatorTok{==} \DecValTok{0} \KeywordTok{or}\NormalTok{ i }\OperatorTok{==} \BuiltInTok{len}\NormalTok{(samples) }\OperatorTok{{-}} \DecValTok{1}\NormalTok{:}
+\NormalTok{            frames.append(progressive\_stipple.copy())}
+\NormalTok{            point\_counts.append(i }\OperatorTok{+} \DecValTok{1}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Generated }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(frames)}\SpecialCharTok{\}}\SpecialStringTok{ frames"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Point counts: }\SpecialCharTok{\{}\NormalTok{point\_counts}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Samples not found. Regenerating stippling for progressive animation...
+Generating stippling pattern for progressive animation...
+Generated 13885 stipple points for progressive animation
+Using existing stippling with 13885 points
+Image shape: (339, 512)
+Generated 140 frames
+Point counts: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900, 7000, 7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 8100, 8200, 8300, 8400, 8500, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9700, 9800, 9900, 10000, 10100, 10200, 10300, 10400, 10500, 10600, 10700, 10800, 10900, 11000, 11100, 11200, 11300, 11400, 11500, 11600, 11700, 11800, 11900, 12000, 12100, 12200, 12300, 12400, 12500, 12600, 12700, 12800, 12900, 13000, 13100, 13200, 13300, 13400, 13500, 13600, 13700, 13800, 13885]
+\end{verbatim}
+
+\subsubsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Use the existing samples from the already{-}computed stippling}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Using existing stippling with"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(samples), }\StringTok{"points}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Image shape:"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(img\_matrix), }\StringTok{"x"}\NormalTok{, }\FunctionTok{ncol}\NormalTok{(img\_matrix), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\CommentTok{\# Create progressive frames by adding points sequentially}
+\NormalTok{frame\_increment }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{frames }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{point\_counts }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+
+\CommentTok{\# Start with white background}
+\NormalTok{progressive\_stipple }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(img\_matrix), }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(img\_matrix))}
+
+\CommentTok{\# Add first point and save initial frame}
+\ControlFlowTok{if}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(samples) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{  y0 }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(samples[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+\NormalTok{  x0 }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(samples[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{])}
+\NormalTok{  progressive\_stipple[y0, x0] }\OtherTok{\textless{}{-}} \FloatTok{0.0}
+\NormalTok{  frames[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ progressive\_stipple}
+\NormalTok{  point\_counts }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(point\_counts, }\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Add remaining points sequentially and save frames at increments}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(samples)) \{}
+\NormalTok{  y }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(samples[i, }\DecValTok{1}\NormalTok{])}
+\NormalTok{  x }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(samples[i, }\DecValTok{2}\NormalTok{])}
+\NormalTok{  progressive\_stipple[y, x] }\OtherTok{\textless{}{-}} \FloatTok{0.0}  \CommentTok{\# Add black dot}
+  
+  \CommentTok{\# Save frame at increments (100, 200, 300, ...) and at the end}
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\%\%}\NormalTok{ frame\_increment }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{||}\NormalTok{ i }\SpecialCharTok{==} \FunctionTok{nrow}\NormalTok{(samples)) \{}
+\NormalTok{    frames[[}\FunctionTok{length}\NormalTok{(frames) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ progressive\_stipple}
+\NormalTok{    point\_counts }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(point\_counts, i)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Generated"}\NormalTok{, }\FunctionTok{length}\NormalTok{(frames), }\StringTok{"frames}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Point counts:"}\NormalTok{, }\FunctionTok{paste}\NormalTok{(point\_counts, }\AttributeTok{collapse =} \StringTok{", "}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now let's create the GIF animation:
+
+\subsubsection{Python}
+
+\subsubsection{R}
+
+\begin{figure}[H]
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{progressive_stippling.gif}}
+
+}
+
+\caption{Progressive stippling animation showing the sequential build-up
+of points. Each frame represents an increment of 100 points,
+demonstrating how the blue noise stippling pattern develops as more
+points are added.}
+
+\end{figure}%
+
+\subsection{Challenge Requirements 📋}\label{challenge-requirements-1}
+
+\subsubsection{Your Task}\label{your-task}
+
+\textbf{Part 1 (This Challenge):} Reproduce the blue noise stippling
+process to create:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{A stippled version of your chosen image} - Use the algorithm
+  demonstrated above to create a stippled version of an image of your
+  choice
+\item
+  \textbf{A progressive stippling GIF animation} - Create an animated
+  GIF showing how the stippling pattern builds up as points are added
+\item
+  \textbf{GitHub Pages site} - Post both the stippled image and GIF to a
+  GitHub Pages site with:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Appropriate captions explaining what the images show
+  \item
+    A brief explanation of blue noise stippling and why it creates
+    aesthetically pleasing patterns
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Part 2 (November 18th):} We'll use your stippled images to
+create a statistical meme about selection bias and missing data. More
+details will be provided in Part 2.
+
+\subsubsection{Minimum Requirements for Any
+Points}\label{minimum-requirements-for-any-points}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Fork and Clone Repository:} Use the starter repository (if
+  provided) or create your own GitHub repository for this challenge
+\item
+  \textbf{Reproduce the Stippling Process:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement the blue noise stippling algorithm (Python recommended, R
+    acceptable)
+  \item
+    Create a stippled version of your chosen image
+  \item
+    Generate a progressive stippling GIF animation
+  \end{itemize}
+\item
+  \textbf{GitHub Pages Setup:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Create a GitHub Pages site showcasing your work
+  \item
+    Include the stippled image with appropriate caption
+  \item
+    Include the progressive GIF with appropriate caption
+  \item
+    Add a brief explanation of blue noise stippling
+  \end{itemize}
+\item
+  \textbf{Code Organization:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Well-organized, readable code
+  \item
+    Comments explaining key steps
+  \item
+    Use just one language (Python or R) - delete the other language
+    sections
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Grading Rubric 🎓}\label{grading-rubric}
+
+\textbf{75\% Grade Requirements:} - Successfully reproduce the stippling
+algorithm - Create a stippled image and progressive GIF - Basic GitHub
+Pages site with images and captions
+
+\textbf{85\% Grade Requirements:} - All of the above, plus: - Clear
+explanation of how blue noise stippling works - Discussion of why the
+algorithm creates aesthetically pleasing patterns - Professional
+presentation of results
+
+\textbf{95\% Grade Requirements:} - All of the above, plus: -
+Experimentation with different parameters (percentage, sigma, etc.) -
+Discussion of how parameter choices affect the final result - Comparison
+of different parameter settings
+
+\textbf{100\% Grade Requirements:} - All of the above, plus: -
+Exceptional presentation and documentation - Creative use of the
+stippling technique - Insightful analysis of the algorithm's behavior -
+Professional-quality GitHub Pages site
+
+\subsection{Getting Started Tips 🚀}\label{getting-started-tips}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, bottomrule=.15mm, colback=white, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, leftrule=.75mm, opacityback=0, rightrule=.15mm, toptitle=1mm, coltitle=black, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{🎯 Navy SEALs Motto}, breakable, left=2mm]
+
+\begin{quote}
+``Slow is Smooth and Smooth is Fast''
+\end{quote}
+
+\emph{Take your time to understand the stippling algorithm, plan your
+approach carefully, and execute with precision. Rushing through this
+challenge will only lead to errors and confusion.}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, bottomrule=.15mm, colback=white, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, leftrule=.75mm, opacityback=0, rightrule=.15mm, toptitle=1mm, coltitle=black, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{💾 Important: Save Your Work Frequently!}, breakable, left=2mm]
+
+\textbf{Before you start:} Make sure to commit your work often using the
+Source Control panel in Cursor (Ctrl+Shift+G or Cmd+Shift+G). This
+prevents the AI from overwriting your progress and ensures you don't
+lose your work.
+
+\textbf{Commit after each major step:} - After implementing the
+importance map function - After implementing the stippling algorithm -
+After creating your stippled image - After creating your GIF animation -
+After setting up GitHub Pages
+
+\emph{Remember: Frequent commits are your safety net!}
+
+\end{tcolorbox}
+
+\subsection{Submission Checklist ✅}\label{submission-checklist}
+
+\textbf{Minimum Requirements (Required for Any Points):}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Forked/cloned repository for this challenge
+\item[$\square$]
+  Implemented blue noise stippling algorithm
+\item[$\square$]
+  Created stippled version of your image
+\item[$\square$]
+  Generated progressive stippling GIF animation
+\item[$\square$]
+  Created GitHub Pages site
+\item[$\square$]
+  Posted stippled image with caption
+\item[$\square$]
+  Posted progressive GIF with caption
+\item[$\square$]
+  Added brief explanation of blue noise stippling
+\end{itemize}
+
+\textbf{75\% Grade Requirements:}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  All minimum requirements met
+\item[$\square$]
+  Code is well-organized and readable
+\item[$\square$]
+  GitHub Pages site is functional
+\end{itemize}
+
+\textbf{85\% Grade Requirements:}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  All 75\% requirements met
+\item[$\square$]
+  Clear explanation of how blue noise stippling works
+\item[$\square$]
+  Discussion of why the algorithm creates aesthetically pleasing
+  patterns
+\end{itemize}
+
+\textbf{95\% Grade Requirements:}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  All 85\% requirements met
+\item[$\square$]
+  Experimentation with different parameters
+\item[$\square$]
+  Discussion of parameter effects
+\end{itemize}
+
+\textbf{100\% Grade Requirements:}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  All 95\% requirements met
+\item[$\square$]
+  Exceptional presentation and documentation
+\item[$\square$]
+  Creative use of the stippling technique
+\item[$\square$]
+  Professional-quality GitHub Pages site
+\end{itemize}
+
+
+
+
+\end{document}

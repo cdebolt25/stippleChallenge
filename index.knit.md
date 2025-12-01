@@ -58,12 +58,10 @@ First, let's load an image that we'll convert to a blue noise stippling pattern.
 
 ### Python
 
-```{python}
-#| label: load-image
-#| echo: true
-#| fig-cap: "Original image before stippling"
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 from PIL import Image
 import matplotlib
@@ -93,14 +91,25 @@ print(f"Image shape: {img_array.shape}")
 print(f"Image size: {img_array.shape[0]}x{img_array.shape[1]} pixels")
 ```
 
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Image shape: (1060, 1600)
+Image size: 1060x1600 pixels
+```
+
+
+:::
+:::
+
+
 ### R
 
-```{r}
-#| label: load-image-r
-#| echo: true
-#| fig-cap: "Original image before stippling"
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 library(imager)
 library(ggplot2)
 
@@ -118,6 +127,8 @@ plot(original_img, axes = FALSE, main = "Original Image")
 
 cat("Image dimensions:", dim(original_img)[1], "x", dim(original_img)[2], "pixels\n")
 ```
+:::
+
 
 :::
 
@@ -134,13 +145,10 @@ Before applying the stippling algorithm, we create an **importance map** that id
 
 ### Python
 
-```{python}
-#| label: importance-map
-#| echo: true
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 
 def compute_importance(
@@ -217,16 +225,15 @@ def compute_importance(
         importance = (importance - m) / (M - m)
     return importance
 ```
+:::
+
 
 ### R
 
-```{r}
-#| label: importance-map-r
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 compute_importance <- function(gray_img, 
                                 extreme_downweight = 0.5,
                                 extreme_threshold_low = 0.4,
@@ -279,6 +286,8 @@ compute_importance <- function(gray_img,
   return(importance)
 }
 ```
+:::
+
 
 :::
 
@@ -297,13 +306,10 @@ The stippling algorithm uses a modified void-and-cluster approach that:
 
 ### Python
 
-```{python}
-#| label: stippling-functions
-#| echo: true
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 
 # compute_importance function is defined in the importance-map chunk
@@ -405,16 +411,15 @@ def void_and_cluster(
 
     return final_stipple, np.array(samples)
 ```
+:::
+
 
 ### R
 
-```{r}
-#| label: stippling-functions-r
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 # Note: R implementation provided for completeness, but Python is strongly recommended
 # The R implementation may have issues with the circular shift that need debugging
 # If you encounter problems (e.g., tiling/repeating patterns), please use the Python version
@@ -555,6 +560,8 @@ void_and_cluster <- function(input_img,
   return(list(stipple = final_stipple, samples = samples_matrix))
 }
 ```
+:::
+
 
 :::
 
@@ -566,13 +573,10 @@ Before generating the stippling pattern, we prepare the image by resizing if nec
 
 ### Python
 
-```{python}
-#| label: prep-image
-#| echo: true
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 from PIL import Image
 
@@ -655,15 +659,26 @@ importance_map = compute_importance(
 print("Importance map computed")
 ```
 
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Resized image from (1060, 1600) to (339, 512) for processing
+Final image shape: (339, 512) (should be 2D for grayscale)
+Importance map computed
+```
+
+
+:::
+:::
+
+
 ### R
 
-```{r}
-#| label: prep-image-r
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 # Resize image if needed
 max_size <- 512
 img_dims <- dim(original_img)
@@ -686,6 +701,8 @@ cat("Final image shape:", dim(img_matrix)[1], "x", dim(img_matrix)[2], "\n")
 importance_map <- compute_importance(img_matrix)
 cat("Importance map computed\n")
 ```
+:::
+
 
 :::
 
@@ -697,13 +714,10 @@ Now let's apply the stippling algorithm to create the blue noise stippling patte
 
 ### Python
 
-```{python}
-#| label: generate-stipple
-#| echo: true
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 from PIL import Image
 
@@ -846,15 +860,26 @@ print(f"Generated {len(samples)} stipple points")
 print(f"Stipple pattern shape: {stipple_pattern.shape}")
 ```
 
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Generating blue noise stippling pattern...
+Generated 13885 stipple points
+Stipple pattern shape: (339, 512)
+```
+
+
+:::
+:::
+
+
 ### R
 
-```{r}
-#| label: generate-stipple-r
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 # Generate stippling pattern
 cat("Generating blue noise stippling pattern...\n")
 stipple_result <- void_and_cluster(
@@ -872,6 +897,8 @@ samples <- stipple_result$samples
 cat("Generated", nrow(samples), "stipple points\n")
 cat("Stipple pattern shape:", nrow(stipple_pattern), "x", ncol(stipple_pattern), "\n")
 ```
+:::
+
 
 :::
 
@@ -883,14 +910,10 @@ Let's visualize the original image, the importance map, and the stippled version
 
 ### Python
 
-```{python}
-#| label: display-results
-#| echo: true
-#| fig-cap: "Comparison of original image, importance map, and blue noise stippling"
-#| fig-width: 7
-#| fig-height: 4
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 from PIL import Image
 import matplotlib
@@ -985,23 +1008,23 @@ else:
 plt.tight_layout()
 # plt.show() removed - Quarto will handle figure display
 ```
+:::
+
 
 ### R
 
-```{r}
-#| label: display-results-r
-#| echo: true
-#| fig-cap: "Comparison of original image, importance map, and blue noise stippling"
-#| fig-width: 7
-#| fig-height: 4
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 par(mfrow = c(1, 3), mar = c(2, 2, 2, 2))
 
 plot(img_resized, axes = FALSE, main = "Original Image")
 plot(as.cimg(importance_map), axes = FALSE, main = "Importance Map")
 plot(as.cimg(stipple_pattern), axes = FALSE, main = "Blue Noise Stippling")
 ```
+:::
+
 
 :::
 
@@ -1013,13 +1036,10 @@ This section creates a GIF showing how the stippled image looks as more points a
 
 ### Python
 
-```{python}
-#| label: progressive-stippling
-#| echo: true
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
+::: {.cell python.reticulate='false'}
+
+```{.python .cell-code}
 import numpy as np
 from PIL import Image
 import matplotlib
@@ -1183,15 +1203,30 @@ print(f"Generated {len(frames)} frames")
 print(f"Point counts: {point_counts}")
 ```
 
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Samples not found. Regenerating stippling for progressive animation...
+Generating stippling pattern for progressive animation...
+Generated 13885 stipple points for progressive animation
+Using existing stippling with 13885 points
+Image shape: (339, 512)
+Generated 140 frames
+Point counts: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900, 7000, 7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 8100, 8200, 8300, 8400, 8500, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9700, 9800, 9900, 10000, 10100, 10200, 10300, 10400, 10500, 10600, 10700, 10800, 10900, 11000, 11100, 11200, 11300, 11400, 11500, 11600, 11700, 11800, 11900, 12000, 12100, 12200, 12300, 12400, 12500, 12600, 12700, 12800, 12900, 13000, 13100, 13200, 13300, 13400, 13500, 13600, 13700, 13800, 13885]
+```
+
+
+:::
+:::
+
+
 ### R
 
-```{r}
-#| label: progressive-stippling-r
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
 
+::: {.cell}
+
+```{.r .cell-code}
 # Use the existing samples from the already-computed stippling
 cat("Using existing stippling with", nrow(samples), "points\n")
 cat("Image shape:", nrow(img_matrix), "x", ncol(img_matrix), "\n")
@@ -1229,6 +1264,8 @@ for(i in 2:nrow(samples)) {
 cat("Generated", length(frames), "frames\n")
 cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
 ```
+:::
+
 
 :::
 
@@ -1238,133 +1275,11 @@ Now let's create the GIF animation:
 
 ### Python
 
-```{python}
-#| label: create-gif
-#| include: false
-#| fig-cap: "Progressive stippling animation showing build-up of points"
-#| message: false
-#| warning: false
-#| python.reticulate: false
 
-import numpy as np
-from PIL import Image
-import matplotlib
-matplotlib.use('Agg')  # Use non-interactive backend
-import matplotlib.pyplot as plt
-from matplotlib.animation import PillowWriter
-
-# Check if frames and point_counts are available (from progressive-stippling chunk)
-# If not, we'll try to regenerate them or use existing GIF
-try:
-    frames
-    point_counts
-    has_frames = True
-except NameError:
-    has_frames = False
-    print("Note: frames and point_counts not found from progressive-stippling chunk.")
-    print("Attempting to regenerate progressive frames...")
-    
-    # Reload and prepare image
-    img_path = 'florida_beach_picture.jpg'
-    original_img = Image.open(img_path)
-    if original_img.mode != 'L':
-        original_img = original_img.convert('L')
-    img_array = np.array(original_img, dtype=np.float32) / 255.0
-    
-    # Resize if needed
-    max_size = 512
-    if img_array.shape[0] > max_size or img_array.shape[1] > max_size:
-        scale = max_size / max(img_array.shape[0], img_array.shape[1])
-        new_size = (int(img_array.shape[1] * scale), int(img_array.shape[0] * scale))
-        img_resized_pil = original_img.resize(new_size, Image.Resampling.LANCZOS)
-        if img_resized_pil.mode != 'L':
-            img_resized_pil = img_resized_pil.convert('L')
-        img_resized = np.array(img_resized_pil, dtype=np.float32) / 255.0
-    else:
-        img_resized = img_array.copy()
-    
-    if len(img_resized.shape) > 2:
-        img_resized = img_resized[:, :, 0]
-    
-    # Try to load existing GIF or note that it needs to be generated
-    import os
-    if os.path.exists('progressive_stippling.gif'):
-        print("Existing progressive_stippling.gif found. Skipping regeneration.")
-        frames = []
-        point_counts = []
-        has_frames = False
-    else:
-        print("Cannot generate GIF without samples. Please ensure generate-stipple chunk runs first.")
-        frames = []
-        point_counts = []
-        has_frames = False
-
-# Create figure for animation
-if has_frames and len(frames) > 0:
-    fig, ax = plt.subplots(figsize=(7, 5))
-    ax.axis('off')
-    
-    # Create the animation
-    print("Creating GIF animation...")
-    writer = PillowWriter(fps=2)  # 2 frames per second
-    
-    gif_path = 'progressive_stippling.gif'
-    with writer.saving(fig, gif_path, dpi=100):
-        for i in range(len(frames)):
-            ax.clear()
-            ax.axis('off')
-            ax.imshow(frames[i], cmap='gray', vmin=0, vmax=1)
-            ax.set_title(f'Progressive Stippling: {point_counts[i]} points', 
-                         fontsize=14, fontweight='bold', pad=10)
-            writer.grab_frame()
-    
-    print(f"GIF saved to: {gif_path}")
-    print(f"Total frames: {len(frames)}")
-    print(f"Point counts: {point_counts}")
-    plt.close(fig)
-else:
-    print("Skipping GIF creation - frames not available or existing GIF found.")
-    print("If progressive_stippling.gif exists, it will be used in the document.")
-```
 
 ### R
 
-```{r}
-#| label: create-gif-r
-#| include: false
-#| message: false
-#| warning: false
-#| eval: false
 
-# Create GIF animation using magick package
-library(magick)
-
-cat("Creating GIF animation...\n")
-
-# Create list of image frames
-img_list <- lapply(1:length(frames), function(i) {
-  frame <- frames[[i]]
-  # Convert matrix to image using imager
-  img <- as.cimg(frame)
-  # Add title using magick (convert from imager first)
-  img_magick <- image_read(as.raster(img))
-  img_magick <- image_annotate(img_magick, 
-                               paste("Progressive Stippling:", 
-                                     point_counts[i], 
-                                     "points"),
-                               size = 20, color = "black", gravity = "north")
-  return(img_magick)
-})
-
-# Combine frames into animated GIF
-gif <- image_animate(image_join(img_list), fps = 2)
-gif_path <- "progressive_stippling.gif"
-image_write(gif, gif_path)
-
-cat("GIF saved to:", gif_path, "\n")
-cat("Total frames:", length(frames), "\n")
-cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
-```
 
 :::
 
@@ -1492,4 +1407,5 @@ cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
 - [ ] Exceptional presentation and documentation
 - [ ] Creative use of the stippling technique
 - [ ] Professional-quality GitHub Pages site
+
 
