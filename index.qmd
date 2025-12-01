@@ -1373,7 +1373,13 @@ cat("Point counts:", paste(point_counts, collapse = ", "), "\n")
 
 :::
 
-## Final Stippled Image
+## Original and Stippled Images
+
+**Original Image:**
+
+![Original Florida beach image before stippling.](florida_beach_picture.jpg)
+
+**Final Stippled Image:**
 
 The completed blue noise stippling of your image:
 
